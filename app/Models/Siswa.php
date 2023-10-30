@@ -16,10 +16,16 @@ class Siswa extends Authenticatable implements AuthenticatableContract
 
     protected $fillable = [
         'nama_siswa',
+        'jenis_kelamin',
+        'tempat_lahir',
+        'tanggal_lahir',
         'email',
         'password',
         'nis',
         'nisn',
+        'nik',
+        'alamat',
+        'no_tlp',
         'semester',
         'th_id'
     ];

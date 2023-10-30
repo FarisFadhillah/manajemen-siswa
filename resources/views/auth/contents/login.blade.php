@@ -7,7 +7,8 @@
 
     <div>
         <div class="form-group position-relative has-icon-left mb-4">
-            <input type="text" name="email" class="form-control @error('email') is-invalid @enderror form-control-xl" placeholder="Email">
+            <input type="text" name="email" class="form-control @error('email') is-invalid @enderror form-control-xl"
+                placeholder="Email">
             <div class="form-control-icon">
                 <i class="bi bi-at"></i>
             </div>
@@ -22,7 +23,8 @@
 
     <div>
         <div class="form-group position-relative has-icon-left mb-4">
-            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror form-control-xl" placeholder="Password">
+            <input type="password" name="password"
+                class="form-control @error('password') is-invalid @enderror form-control-xl" placeholder="Password">
             <div class="form-control-icon">
                 <i class="bi bi-shield-lock"></i>
             </div>
@@ -35,5 +37,9 @@
         @enderror
     </div>
     <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
+    <div class="text-center mt-5">
+        <p class="text-xs">Calon Siswa Buat Akun <a class="text-blue-800" href="/pendaftaran"> Disini!</a>
+        </p>
+    </div>
 </form>
 @endsection

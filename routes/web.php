@@ -17,6 +17,8 @@ use App\Http\Controllers\Guru\SiswaController as GuruSiswaController;
 use App\Http\Controllers\Siswa\DashboardController as SiswaDashboardController;
 use App\Http\Controllers\Siswa\NilaiController as SiswaNilaiController;
 
+use App\Http\Controllers\CalonSiswa\PendaftaranController as CasisPendaftaranController;
+
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -76,3 +78,7 @@ Route::middleware(['auth:siswa'])->prefix('siswa')->group(function () {
 
     Route::resource('nilais', SiswaNilaiController::class);
 });
+
+Route::get('pendaftaran', [CasisPendaftaranController::class, 'create']);
+Route::post('pendaftaran', [CasisPendaftaranController::class, 'store'])->name('casis.store');
+

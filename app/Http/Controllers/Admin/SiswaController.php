@@ -44,7 +44,7 @@ class SiswaController extends Controller
             'th_id' => 'required',
             'email' => 'required',
         ]);
-        $validate['password'] = Hash    ::make('password'); // Password
+        $validate['password'] = Hash::make('password'); // Password
 
         Siswa::create($validate);
 

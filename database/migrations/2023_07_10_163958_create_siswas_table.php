@@ -14,12 +14,18 @@ return new class extends Migration
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
             $table->string('nama_siswa');
+            $table->string('jenis_kelamin')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
             $table->string('email');
             $table->string('password');
-            $table->string('nis');
+            $table->string('nis')->nullable();
             $table->string('nisn');
-            $table->string('semester');
-            $table->foreignId('th_id')->constrained('tahun_ajarans', 'id')->onDelete('cascade');
+            $table->string('nik');
+            $table->string('alamat');
+            $table->string('no_tlp');
+            $table->string('semester')->nullable();
+            $table->foreignId('th_id')->nullable()->constrained('tahun_ajarans', 'id')->onDelete('cascade');
             $table->timestamps();
         });
     }
