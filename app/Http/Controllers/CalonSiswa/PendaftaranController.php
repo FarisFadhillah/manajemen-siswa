@@ -4,6 +4,7 @@ namespace App\Http\Controllers\CalonSiswa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Siswa;
+use App\Models\Tahun_ajaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,7 +23,9 @@ class PendaftaranController extends Controller
      */
     public function create()
     {
-        return view('dashboard.casis.pendaftaran.pendaftaran-create');
+        $tahun_ajarans = Tahun_ajaran::all();
+
+        return view('dashboard.casis.pendaftaran.pendaftaran-create', compact('tahun_ajarans'));
     }
 
     /**
@@ -43,7 +46,7 @@ class PendaftaranController extends Controller
             'email' => 'required',
             'password' => 'required',
             'semester' => 'nullable',
-            'th_id' => 'nullable',
+            'th_id' => 'required',
         ]);
         $validate['password'] = Hash::make($validate['password']);
 

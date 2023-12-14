@@ -38,6 +38,9 @@ Route::middleware(['guest'])->controller(AuthController::class)->group(function 
     Route::get('/', 'index');
     Route::post('/login-siswa', 'loginSiswa');
 
+    Route::get('pendaftaran', [CasisPendaftaranController::class, 'create']);
+    Route::post('pendaftaran', [CasisPendaftaranController::class, 'store'])->name('casis.store');
+
     // GURU
     Route::get('/login-guru', 'guru');
     Route::post('/login-guru', 'loginGuru');
@@ -78,7 +81,4 @@ Route::middleware(['auth:siswa'])->prefix('siswa')->group(function () {
 
     Route::resource('nilais', SiswaNilaiController::class);
 });
-
-Route::get('pendaftaran', [CasisPendaftaranController::class, 'create']);
-Route::post('pendaftaran', [CasisPendaftaranController::class, 'store'])->name('casis.store');
 
