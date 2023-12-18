@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SiswaController as AdminSiswaController;
 use App\Http\Controllers\Admin\TahunAjaranController as AdminTahunAjaranController;
 use App\Http\Controllers\Admin\KelasController as AdminKelasController;
 use App\Http\Controllers\Admin\NilaiController as AdminNilaiController;
+use App\Http\Controllers\Admin\PendaftaranController as AdminPendaftaranController;
 
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
 use App\Http\Controllers\Guru\NilaiController as GuruNilaiController;
@@ -17,7 +18,8 @@ use App\Http\Controllers\Guru\SiswaController as GuruSiswaController;
 use App\Http\Controllers\Siswa\DashboardController as SiswaDashboardController;
 use App\Http\Controllers\Siswa\NilaiController as SiswaNilaiController;
 
-use App\Http\Controllers\CalonSiswa\PendaftaranController as CasisPendaftaranController;
+use App\Http\Controllers\CalonSiswa\DataSiswaController as DataSiswaController;
+use App\Http\Controllers\CalonSiswa\DataLengkapSiswaController as SiswaLengkapController;
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -38,8 +40,8 @@ Route::middleware(['guest'])->controller(AuthController::class)->group(function 
     Route::get('/', 'index');
     Route::post('/login-siswa', 'loginSiswa');
 
-    Route::get('pendaftaran', [CasisPendaftaranController::class, 'create']);
-    Route::post('pendaftaran', [CasisPendaftaranController::class, 'store'])->name('casis.store');
+    Route::get('pendaftaran', [DataSiswaController::class, 'create']);
+    Route::post('pendaftaran', [DataSiswaController::class, 'store'])->name('casis.store');
 
     // GURU
     Route::get('/login-guru', 'guru');
@@ -62,6 +64,9 @@ Route::middleware(['auth:web'])->prefix('admin')->group(function () {
     Route::resource('siswas', AdminSiswaController::class);
     Route::resource('kelases', AdminKelasController::class);
     Route::resource('nilais', AdminNilaiController::class);
+    Route::resource('pendaftarans', AdminPendaftaranController::class);
+    Route::post('/pendaftaran/konfirmasi/{id}', [AdminPendaftaranController::class, 'konfirmasi']);
+
 });
 
 Route::middleware(['auth:guru'])->prefix('guru')->group(function () {
@@ -78,6 +83,12 @@ Route::middleware(['auth:siswa'])->prefix('siswa')->group(function () {
     Route::get('/', [SiswaDashboardController::class, 'index']);
     Route::get('/profile', [SiswaDashboardController::class, 'siswa']);
     Route::put('/profile/{id}', [SiswaDashboardController::class, 'update']);
+
+    Route::get('/data-ortu', [SiswaLengkapController::class, 'ortu']);
+    Route::match(['post', 'put'],'/data-ortu/update/{id}', [SiswaLengkapController::class, 'update_ortu']);
+
+    Route::get('/data-tambahan', [SiswaLengkapController::class, 'tambahan']);
+    Route::match(['post', 'put'],'/data-tambahan/update/{id}', [SiswaLengkapController::class, 'update_tambahan']);
 
     Route::resource('nilais', SiswaNilaiController::class);
 });

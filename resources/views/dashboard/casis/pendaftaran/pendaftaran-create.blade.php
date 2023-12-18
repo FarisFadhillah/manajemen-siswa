@@ -75,7 +75,7 @@
 
                 {{-- nis&nik --}}
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="basicInput">NISN (Nomor Induk Siswa Nasional)</label>
                             <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" id="basicInput" placeholder="">
@@ -88,24 +88,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <fieldset class="form-group">
-                            <label for="basicSelect">Tahun Ajaran</label>
-                            <select name="th_id" class="choices form-select @error('th_id') is-invalid @enderror" id="basicSelect">
-                                @foreach ($tahun_ajarans as $val)
-                                    <option value="{{ $val->id }}">{{ $val->tahun_ajaran }}</option>
-                                @endforeach
-                            </select>
-                            @error('th_id')
-                            <div class="invalid-feedback">
-                                <i class="bx bx-radio-circle"></i>
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </fieldset>
-                    </div>
-
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="basicInput">NIK (Nomor Induk Kependudukan)</label>
                             <input type="text" class="form-control @error('nik') is-invalid @enderror" name="nik" id="basicInput" placeholder="">

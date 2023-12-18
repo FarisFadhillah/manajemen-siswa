@@ -34,13 +34,17 @@ class DashboardController extends Controller
     public function update(Request $request, string $id)
     {
         $validate = $request->validate([
-            'password' => 'required',
-            'confirm_password' => 'required|same:password'
+            'nama_siswa' => 'required',
+            'email' => 'required',
+            'password' => 'nullable',
+            'confirm_password' => 'nullable|same:password'
         ]);
 
         $validate['password'] = Hash::make($validate['password']);
 
         Siswa::where('id', $id)->update([
+            'nama_siswa' => $validate['nama_siswa'],
+            'email' => $validate['email'],
             'password' => $validate['password']
         ]);
 

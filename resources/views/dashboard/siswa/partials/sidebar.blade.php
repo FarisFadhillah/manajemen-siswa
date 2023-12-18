@@ -23,29 +23,58 @@
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
                 
-                <li
-                    class="sidebar-item {{ (request()->is('siswa')) ? "active" : "" }}">
+                @php
+                $siswaIdMatch = false; // Inisialisasi variabel untuk menyimpan status siswa_id match
+
+                // Ambil data siswa_id yang sedang login
+                $loggedInSiswaId = Auth::user()->id; // Sesuaikan dengan cara Anda mengakses siswa_id dari user saat login
+
+                // Cek apakah ada siswa dengan siswa_id yang sama dengan yang sedang login dan status 1
+                $siswaWithStatus1 = \App\Models\Data_tambahan_siswa::where('siswa_id', $loggedInSiswaId)
+                    ->where('status', 1)
+                    ->exists();
+
+                // Jika siswa_id match dan status 1, set variabel $siswaIdMatch menjadi true
+                if ($siswaWithStatus1) {
+                    $siswaIdMatch = true;
+                }
+            @endphp
+
+            @if($siswaIdMatch)
+                <li class="sidebar-item {{ (request()->is('siswa')) ? "active" : "" }}">
                     <a href="/siswa" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
-                <li
-                    class="sidebar-item {{ (request()->is('siswa/profile')) ? "active" : "" }}">
-                    <a href="/siswa/profile" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Data Diri</span>
-                    </a>
-                </li>
-
-                <li
-                    class="sidebar-item {{ (request()->is('siswa/nilais*')) ? "active" : "" }}">
+                <li class="sidebar-item {{ (request()->is('siswa/nilais*')) ? "active" : "" }}">
                     <a href="/siswa/nilais" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Data Nilai</span>
                     </a>
                 </li>
+            @endif
+
+            <li class="sidebar-item {{ (request()->is('siswa/profile')) ? "active" : "" }}">
+                <a href="/siswa/profile" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Data Diri</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ (request()->is('siswa/data-ortu')) ? "active" : "" }}">
+                <a href="/siswa/data-ortu" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Data Orang Tua</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ (request()->is('siswa/data-tambahan')) ? "active" : "" }}">
+                <a href="/siswa/data-tambahan" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Data Tambahan</span>
+                </a>
+            </li>
+
 
                 <li
                     class="sidebar-item">

@@ -19,27 +19,27 @@
                     
                     <div class="form-group">
                         <label for="basicInput">NIS (Nomor Induk Siswa)</label>
-                        <input type="text" readonly disabled value="{{ $data->nis }}" class="form-control" id="basicInput" placeholder="Enter email">
+                        <input type="text" readonly disabled value="{{ $data->nis }}" class="form-control" id="basicInput" placeholder="Belum Ada Data">
                     </div>
 
                     <div class="form-group">
                         <label for="basicInput">Nama Siswa</label>
-                        <input type="text" readonly disabled value="{{ $data->nama_siswa }}" class="form-control" id="basicInput" placeholder="Enter email">
+                        <input type="text" name="nama_siswa" value="{{ $data->nama_siswa }}" class="form-control" id="basicInput" placeholder="Enter email">
                     </div>
                         
                     <div class="form-group">
                         <label for="basicInput">Email</label>
-                        <input type="text" readonly disabled class="form-control" value="{{ $data->email }}" id="basicInput" placeholder="Enter email">
+                        <input type="text" name="email" class="form-control" value="{{ $data->email }}" id="basicInput" placeholder="Enter email">
                     </div>
 
                     <div class="form-group">
                         <label for="basicInput">Semester</label>
-                        <input type="text" readonly disabled value="{{ $data->semester }}" class="form-control" id="basicInput" placeholder="Enter email">
+                        <input type="text" readonly disabled value="{{ $data->semester ?? 'Belum ada data' }}" class="form-control" id="basicInput">
                     </div>
 
                     <div class="form-group">
                         <label for="basicInput">Tahun Ajaran</label>
-                        <input type="text" readonly disabled value="{{ $data->th->tahun_ajaran }}" class="form-control" id="basicInput" placeholder="Enter email">
+                        <input type="text" readonly disabled value="{{ $data->th->tahun_ajaran ?? 'Belum ada data' }}" class="form-control" id="basicInput" placeholder="Enter email">
                     </div>
 
                     <div class="form-group">
