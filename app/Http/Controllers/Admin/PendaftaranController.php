@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Data_lengkap_siswa;
 use App\Models\Data_ortu_siswa;
 use App\Models\Data_tambahan_siswa;
 use App\Models\Siswa;
@@ -45,10 +46,11 @@ class PendaftaranController extends Controller
     public function show(string $id)
     {
         $siswas = Siswa::where('id', $id)->first();
-        $lengkap = Data_ortu_siswa::where('siswa_id', $id)->first();
+        $ortu = Data_ortu_siswa::where('siswa_id', $id)->first();
+        $lengkap = Data_lengkap_siswa::where('siswa_id', $id)->first();
         $tambahan = Data_tambahan_siswa::where('siswa_id', $id)->first();
 
-        return view('dashboard.admin.pendaftaran.show', compact('siswas', 'lengkap', 'tambahan'));
+        return view('dashboard.admin.pendaftaran.show', compact('siswas', 'ortu', 'lengkap', 'tambahan'));
     }
     
     public function konfirmasi(string $id)

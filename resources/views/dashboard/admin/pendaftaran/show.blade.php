@@ -27,38 +27,38 @@
                         <td>Alamat</td> <td>:</td> <td>{{ $siswas->alamat }}</td>
                         <td>No Telepon</td> <td>:</td> <td>{{ $siswas->no_tlp }}</td>
                     </tr>
-                    {{-- <tr>
-                        <td>No KK</td> <td>:</td> <td>{{ $siswas->alamat }}</td>
-                        <td>No Akta</td> <td>:</td> <td>{{ $siswas->no_tlp }}</td>
+                    <tr>
+                        <td>No KK</td> <td>:</td> <td>{{ $lengkap->nokk }}</td>
+                        <td>No Akta</td> <td>:</td> <td>{{ $lengkap->no_akta }}</td>
                     </tr>
                     <tr>
-                        <td>Agama</td> <td>:</td> <td>{{ $siswas->alamat }}</td>
-                        <td>Kewarganegaraan</td> <td>:</td> <td>{{ $siswas->no_tlp }}</td>
+                        <td>Agama</td> <td>:</td> <td>{{ $lengkap->agama }}</td>
+                        <td>Kewarganegaraan</td> <td>:</td> <td>{{ $lengkap->kewarganegaraan }}</td>
                     </tr>
                     <tr>
-                        <td>Lintang</td> <td>:</td> <td>{{ $siswas->alamat }}</td>
-                        <td>Bujur</td> <td>:</td> <td>{{ $siswas->no_tlp }}</td>
+                        <td>Koordinat Lintang</td> <td>:</td> <td>{{ $lengkap->lintang }}</td>
+                        <td>Koordinat Bujur</td> <td>:</td> <td>{{ $lengkap->bujur }}</td>
                     </tr>
                     <tr>
-                        <td>Tinggal Bersama</td> <td>:</td> <td>{{ $siswas->alamat }}</td>
-                        <td>Moda Transportasi</td> <td>:</td> <td>{{ $siswas->no_tlp }}</td>
+                        <td>Tinggal Bersama</td> <td>:</td> <td>{{ $lengkap->tinggal_bersama }}</td>
+                        <td>Moda Transportasi</td> <td>:</td> <td>{{ $lengkap->moda_transportasi }}</td>
                     </tr>
                     <tr>
-                        <td>Anak Ke </td> <td>:</td> <td>{{ $siswas->alamat }}</td>
-                        <td>KIP</td> <td>:</td> <td>{{ $siswas->no_tlp }}</td>
+                        <td>Anak Ke </td> <td>:</td> <td>{{ $lengkap->anak_ke }}</td>
+                        <td>KIP</td> <td>:</td> <td>{{ $lengkap->kip }}</td>
                     </tr>
                     <tr>
-                        <td>Tinggi Badan</td> <td>:</td> <td>{{ $siswas->alamat }}</td>
-                        <td>Berat Badan</td> <td>:</td> <td>{{ $siswas->no_tlp }}</td>
+                        <td>Tinggi Badan</td> <td>:</td> <td>{{ $lengkap->tb }}</td>
+                        <td>Berat Badan</td> <td>:</td> <td>{{ $lengkap->bb }}</td>
                     </tr>
                     <tr>
-                        <td>Jarak Rumah</td> <td>:</td> <td>{{ $siswas->alamat }}</td>
-                        <td>Waktu Tempuh</td> <td>:</td> <td>{{ $siswas->no_tlp }}</td>
+                        <td>Jarak Rumah</td> <td>:</td> <td>{{ $lengkap->jarak_tempuh }}</td>
+                        <td>Waktu Tempuh</td> <td>:</td> <td>{{ $lengkap->waktu_tempuh }}</td>
                     </tr>
                     <tr>
-                        <td>Jumlah Sodara</td> <td>:</td> <td>{{ $siswas->alamat }}</td>
-                        <td>Prestasi</td> <td>:</td> <td>{{ $siswas->no_tlp }}</td>
-                    </tr> --}}
+                        <td>Jumlah Sodara</td> <td>:</td> <td>{{ $lengkap->jumlah_sodara }}</td>
+                        <td>Prestasi</td> <td>:</td> <td>{{ $lengkap->prestasi }}</td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -68,39 +68,39 @@
                 <h2>Data Orang Tua Siswa</h2>
                 <table class="table table-striped" id="table1">
                     <tr>
-                        <td>Nama Ayah</td> <td>:</td> <td>{{ $lengkap->nama_ayah }}</td>
-                        <td>Nama Ibu</td> <td>:</td> <td>{{ $lengkap->nama_ibu }}</td>
-                        <td>Nama Wali</td> <td>:</td> <td>{{ $lengkap->nama_wali }}</td>
+                        <td>Nama Ayah</td> <td>:</td> <td>{{ $ortu->nama_ayah }}</td>
+                        <td>Nama Ibu</td> <td>:</td> <td>{{ $ortu->nama_ibu }}</td>
+                        <td>Nama Wali</td> <td>:</td> <td>{{ $ortu->nama_wali }}</td>
                     </tr>
                     <tr>
-                        <td>NIK Ayah</td> <td>:</td> <td>{{ $lengkap->nik_ayah }}</td>
-                        <td>NIK Ibu</td> <td>:</td> <td>{{ $lengkap->nik_ibu }}</td>
-                        <td>NIK Wali</td> <td>:</td> <td>{{ $lengkap->nik_wali }}</td>
+                        <td>NIK Ayah</td> <td>:</td> <td>{{ $ortu->nik_ayah }}</td>
+                        <td>NIK Ibu</td> <td>:</td> <td>{{ $ortu->nik_ibu }}</td>
+                        <td>NIK Wali</td> <td>:</td> <td>{{ $ortu->nik_wali }}</td>
                     </tr>
                     <tr>
-                        <td>Tanggal Lahir Ayah</td> <td>:</td> <td>{{ $lengkap->lahir_ayah }}</td>
-                        <td>Tanggal Lahir Ibu</td> <td>:</td> <td>{{ $lengkap->lahir_ibu }}</td>
-                        <td>Tanggal Lahir Wali</td> <td>:</td> <td>{{ $lengkap->lahir_wali }}</td>
+                        <td>Tanggal Lahir Ayah</td> <td>:</td> <td>{{ $ortu->lahir_ayah }}</td>
+                        <td>Tanggal Lahir Ibu</td> <td>:</td> <td>{{ $ortu->lahir_ibu }}</td>
+                        <td>Tanggal Lahir Wali</td> <td>:</td> <td>{{ $ortu->lahir_wali }}</td>
                     </tr>
                     <tr>
-                        <td>Pendidikan Ayah</td> <td>:</td> <td>{{ $lengkap->pendidikan_ayah }}</td>
-                        <td>Pendidikan Ibu</td> <td>:</td> <td>{{ $lengkap->pendidikan_ibu }}</td>
-                        <td>Pendidikan Wali</td> <td>:</td> <td>{{ $lengkap->pendidikan_wali }}</td>
+                        <td>Pendidikan Ayah</td> <td>:</td> <td>{{ $ortu->pendidikan_ayah }}</td>
+                        <td>Pendidikan Ibu</td> <td>:</td> <td>{{ $ortu->pendidikan_ibu }}</td>
+                        <td>Pendidikan Wali</td> <td>:</td> <td>{{ $ortu->pendidikan_wali }}</td>
                     </tr>
                     <tr>
-                        <td>Pekerjaan Ayah</td> <td>:</td> <td>{{ $lengkap->pekerjaan_ayah }}</td>
-                        <td>Pekerjaan Ibu</td> <td>:</td> <td>{{ $lengkap->pekerjaan_ibu }}</td>
-                        <td>Pekerjaan Wali</td> <td>:</td> <td>{{ $lengkap->pekerjaan_wali }}</td>
+                        <td>Pekerjaan Ayah</td> <td>:</td> <td>{{ $ortu->pekerjaan_ayah }}</td>
+                        <td>Pekerjaan Ibu</td> <td>:</td> <td>{{ $ortu->pekerjaan_ibu }}</td>
+                        <td>Pekerjaan Wali</td> <td>:</td> <td>{{ $ortu->pekerjaan_wali }}</td>
                     </tr>
                     <tr>
-                        <td>Penghasilan Ayah</td> <td>:</td> <td>{{ $lengkap->penghasilan_ayah }}</td>
-                        <td>Penghasilan Ibu</td> <td>:</td> <td>{{ $lengkap->penghasilan_ibu }}</td>
-                        <td>Penghasilan Wali</td> <td>:</td> <td>{{ $lengkap->penghasilan_wali }}</td>
+                        <td>Penghasilan Ayah</td> <td>:</td> <td>{{ $ortu->penghasilan_ayah }}</td>
+                        <td>Penghasilan Ibu</td> <td>:</td> <td>{{ $ortu->penghasilan_ibu }}</td>
+                        <td>Penghasilan Wali</td> <td>:</td> <td>{{ $ortu->penghasilan_wali }}</td>
                     </tr>
                     <tr>
-                        <td>No Telepon Ayah</td> <td>:</td> <td>{{ $lengkap->no_telp_ayah }}</td>
-                        <td>No Telepon Ibu</td> <td>:</td> <td>{{ $lengkap->no_telp_ibu }}</td>
-                        <td>No Telepon Wali</td> <td>:</td> <td>{{ $lengkap->no_telp_wali }}</td>
+                        <td>No Telepon Ayah</td> <td>:</td> <td>{{ $ortu->no_telp_ayah }}</td>
+                        <td>No Telepon Ibu</td> <td>:</td> <td>{{ $ortu->no_telp_ibu }}</td>
+                        <td>No Telepon Wali</td> <td>:</td> <td>{{ $ortu->no_telp_wali }}</td>
                     </tr>
                     
                 </table>

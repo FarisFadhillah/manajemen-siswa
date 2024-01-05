@@ -90,6 +90,9 @@ Route::middleware(['auth:siswa'])->prefix('siswa')->group(function () {
     Route::get('/data-tambahan', [SiswaLengkapController::class, 'tambahan']);
     Route::match(['post', 'put'],'/data-tambahan/update/{id}', [SiswaLengkapController::class, 'update_tambahan']);
 
+    Route::get('/data-lengkap', [SiswaLengkapController::class, 'lengkap']);
+    Route::match(['post', 'put'],'/data-lengkap/update/{id}', [SiswaLengkapController::class, 'update_lengkap']);
+
     Route::resource('nilais', SiswaNilaiController::class);
 });
 

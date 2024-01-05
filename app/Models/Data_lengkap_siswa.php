@@ -10,7 +10,7 @@ class Data_lengkap_siswa extends Model
     use HasFactory;
     
     protected $fillable = [
-        
+        'siswa_id',
         'nokk',
         'no_akta',
         'agama',

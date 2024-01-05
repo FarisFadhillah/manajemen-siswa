@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CalonSiswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Data_lengkap_siswa;
 use App\Models\Data_ortu_siswa;
 use App\Models\Data_tambahan_siswa;
 use Illuminate\Http\Request;
@@ -131,36 +132,36 @@ class DataLengkapSiswaController extends Controller
         // dd($validate);
         
         // Inisialisasi data
-    $data = [
-        'siswa_id' => $siswa->id,
-        'asal_sekolah' => $validate['asal_sekolah'],
-        'nis' => $validate['nis'],
-        'nomor_peserta' => $validate['nomor_peserta'],
-        'nomor_ijasah' => $validate['nomor_ijasah'],
-        'hobi' => $validate['hobi'],
-        'cita_cita' => $validate['cita_cita'],
-    ];
+        $data = [
+            'siswa_id' => $siswa->id,
+            'asal_sekolah' => $validate['asal_sekolah'],
+            'nis' => $validate['nis'],
+            'nomor_peserta' => $validate['nomor_peserta'],
+            'nomor_ijasah' => $validate['nomor_ijasah'],
+            'hobi' => $validate['hobi'],
+            'cita_cita' => $validate['cita_cita'],
+        ];
 
-    // Operasi insert atau update
-    if ($id == 'new') {
-        $this->uploadAndSaveImage($request, 'doc_ijasah', $data);
-        $this->uploadAndSaveImage($request, 'doc_akte', $data);
-        $this->uploadAndSaveImage($request, 'doc_kk', $data);
-        $this->uploadAndSaveImage($request, 'doc_ktp', $data);
-        $this->uploadAndSaveImage($request, 'doc_kip', $data);
+        // Operasi insert atau update
+        if ($id == 'new') {
+            $this->uploadAndSaveImage($request, 'doc_ijasah', $data);
+            $this->uploadAndSaveImage($request, 'doc_akte', $data);
+            $this->uploadAndSaveImage($request, 'doc_kk', $data);
+            $this->uploadAndSaveImage($request, 'doc_ktp', $data);
+            $this->uploadAndSaveImage($request, 'doc_kip', $data);
 
-        // Ini operasi insert (baru)
-        Data_tambahan_siswa::create($data);
-    } else {
-        $this->uploadAndSaveImage($request, 'doc_ijasah', $data);
-        $this->uploadAndSaveImage($request, 'doc_akte', $data);
-        $this->uploadAndSaveImage($request, 'doc_kk', $data);
-        $this->uploadAndSaveImage($request, 'doc_ktp', $data);
-        $this->uploadAndSaveImage($request, 'doc_kip', $data);
+            // Ini operasi insert (baru)
+            Data_tambahan_siswa::create($data);
+        } else {
+            $this->uploadAndSaveImage($request, 'doc_ijasah', $data);
+            $this->uploadAndSaveImage($request, 'doc_akte', $data);
+            $this->uploadAndSaveImage($request, 'doc_kk', $data);
+            $this->uploadAndSaveImage($request, 'doc_ktp', $data);
+            $this->uploadAndSaveImage($request, 'doc_kip', $data);
 
-        // Ini operasi update
-        Data_tambahan_siswa::where('id', $id)->update($data);
-    }
+            // Ini operasi update
+            Data_tambahan_siswa::where('id', $id)->update($data);
+        }
 
         // if ($id == 'new') {
         //     // dd($id);
@@ -202,20 +203,97 @@ class DataLengkapSiswaController extends Controller
     }
 
     protected function uploadAndSaveImage($request, $fieldName, &$data)
-{
-    if ($request->hasFile($fieldName)) {
-        // Hapus gambar lama jika ada
-        if (isset($data[$fieldName])) {
-            Storage::delete('public/images/dokumenPendaftaran/' . $data[$fieldName]);
+    {
+        if ($request->hasFile($fieldName)) {
+            // Hapus gambar lama jika ada
+            if (isset($data[$fieldName])) {
+                Storage::delete('public/images/dokumenPendaftaran/' . $data[$fieldName]);
+            }
+
+            // Simpan gambar baru
+            $image = $request->file($fieldName);
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            Storage::putFileAs('public/images/dokumenPendaftaran/', $image, $imageName);
+
+            // Simpan nama gambar ke dalam data
+            $data[$fieldName] = $imageName;
         }
-
-        // Simpan gambar baru
-        $image = $request->file($fieldName);
-        $imageName = time() . '_' . $image->getClientOriginalName();
-        Storage::putFileAs('public/images/dokumenPendaftaran/', $image, $imageName);
-
-        // Simpan nama gambar ke dalam data
-        $data[$fieldName] = $imageName;
     }
-}
+
+    public function lengkap(Request $request){
+        $siswa = $request->user();
+
+        $data = Data_lengkap_siswa::where('siswa_id', $siswa->id)->first();
+
+        return view('dashboard.siswa.data-lengkap', compact('data'));
+    }
+
+    public function update_lengkap(Request $request, string $id)
+    {
+        $siswa = $request->user();
+        $validate = $request->validate([
+            'nokk' => 'required',
+            'no_akta' => 'required',
+            'agama' => 'required',
+            'kewarganegaraan' => 'required',
+            'kip' => 'required',
+            'prestasi' => 'required',
+            'anak_ke' => 'required',
+            'jumlah_sodara' => 'required',
+            'tb' => 'required',
+            'bb' => 'required',
+            'tinggal_bersama' => 'required',
+            'moda_transportasi' => 'required',
+            'lintang' => 'required',
+            'bujur' => 'required',
+            'jarak_tempuh' => 'required',
+            'waktu_tempuh' => 'required',
+        ]);
+
+        if ($id == 'new') {
+            // Ini operasi insert (baru)
+            Data_lengkap_siswa::create([
+                'siswa_id' => $siswa->id,
+                'nokk' => $validate['nokk'],
+                'no_akta' => $validate['no_akta'],
+                'agama' => $validate['agama'],
+                'kewarganegaraan' => $validate['kewarganegaraan'],
+                'kip' => $validate['kip'],
+                'prestasi' => $validate['prestasi'],
+                'anak_ke' => $validate['anak_ke'],
+                'jumlah_sodara' => $validate['jumlah_sodara'],
+                'tb' => $validate['tb'],
+                'bb' => $validate['bb'],
+                'tinggal_bersama' => $validate['tinggal_bersama'],
+                'moda_transportasi' => $validate['moda_transportasi'],
+                'lintang' => $validate['lintang'],
+                'bujur' => $validate['bujur'],
+                'jarak_rumah' => $validate['jarak_rumah'],
+                'waktu_tempuh' => $validate['waktu_tempuh']
+            ]);
+        } else {
+            // Ini operasi update
+            Data_lengkap_siswa::where('id', $id)->update([
+                'siswa_id' => $siswa->id,
+                'siswa_id' => $siswa->id,
+                'nokk' => $validate['nokk'],
+                'no_akta' => $validate['no_akta'],
+                'agama' => $validate['agama'],
+                'kewarganegaraan' => $validate['kewarganegaraan'],
+                'kip' => $validate['kip'],
+                'prestasi' => $validate['prestasi'],
+                'anak_ke' => $validate['anak_ke'],
+                'jumlah_sodara' => $validate['jumlah_sodara'],
+                'tb' => $validate['tb'],
+                'bb' => $validate['bb'],
+                'tinggal_bersama' => $validate['tinggal_bersama'],
+                'moda_transportasi' => $validate['moda_transportasi'],
+                'lintang' => $validate['lintang'],
+                'bujur' => $validate['bujur'],
+                'jarak_rumah' => $validate['jarak_rumah'],
+                'waktu_tempuh' => $validate['waktu_tempuh']
+            ]);
+        }
+        return redirect()->to('/siswa/data-lengkap')->with('success', 'Successfully Add Data');
+    }
 }
