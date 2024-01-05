@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kelas_bridges', function (Blueprint $table) {
+        Schema::create('siswa_document_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siswa_id')->constrained('siswas', 'id')->onDelete('cascade');
-            $table->foreignId('guru_id')->constrained('gurus', 'id')->onDelete('cascade');
-            $table->foreignId('kelas_id')->constrained('kelases', 'id')->onDelete('cascade');
+            $table->string('ijazah');
+            $table->string('akte');
+            $table->string('kartu_keluarga');
+            $table->string('ktp_ortu');
+            $table->string('kartu_bantuan_pemerintah')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kelas_bridges');
+        Schema::dropIfExists('siswa_document_details');
     }
 };

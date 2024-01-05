@@ -19,13 +19,11 @@ return new class extends Migration
             $table->date('tanggal_lahir')->nullable();
             $table->string('email');
             $table->string('password');
-            $table->string('nis')->nullable();
-            $table->string('nisn');
-            $table->string('nik');
-            $table->string('alamat');
+            $table->string('kewarganegaraan');
+            $table->string('agama');
             $table->string('no_tlp');
-            $table->string('semester')->nullable();
-            $table->foreignId('th_id')->nullable()->constrained('tahun_ajarans', 'id')->onDelete('cascade');
+            $table->enum('status',['reguler', 'rmp'])->nullable();
+            $table->enum('status_penerimaan',['calon', 'diterima', 'ditolak'])->default('calon');
             $table->timestamps();
         });
     }

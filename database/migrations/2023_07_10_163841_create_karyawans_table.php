@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('absens', function($table) {
-            $table->integer('total_tanpa_keterangan')->after('total_sakit');
+        Schema::create('karyawans', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->string('email');
+            $table->string('password');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('absens', function($table) {
-            $table->dropColumn('total_tanpa_keterangan');
-        });
+        Schema::dropIfExists('karyawans');
     }
 };

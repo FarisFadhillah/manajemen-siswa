@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('absens', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siswa_id')->constrained('siswas', 'id')->onDelete('cascade');
-            $table->integer('total_masuk');
-            $table->integer('total_izin');
-            $table->integer('total_sakit');
+            $table->foreignId('karyawan_pelajaran_id')->constrained('karyawan_pelajarans', 'id')->onDelete('cascade');
+            $table->enum('status',['izin', 'sakit', 'masuk', 'Tanpa Keterangan']);
+            $table->date('tanggal');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }
