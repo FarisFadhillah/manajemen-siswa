@@ -40,9 +40,9 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'guru' => [
+        'karyawan' => [
             'driver' => 'session',
-            'provider' => 'gurus'
+            'provider' => 'karyawans'
         ],
         'siswa' => [
             'driver' => 'session',
@@ -72,9 +72,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'gurus' => [
+        'karyawans' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Guru::class,
+            'model' => App\Models\Karyawan::class,
         ],
         'siswas' => [
             'driver' => 'eloquent',
@@ -112,8 +112,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'gurus' => [
-            'provider' => 'gurus',
+        'karyawans' => [
+            'provider' => 'karyawans',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

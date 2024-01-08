@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tahun_ajaran extends Model
+class Karyawan_pelajaran extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'tahun_ajaran'
+        'pelajaran_id',
+        'karyawan_id',
     ];
 }

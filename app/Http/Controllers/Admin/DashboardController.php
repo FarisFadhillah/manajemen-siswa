@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Guru;
+use App\Models\Karyawans;
 use App\Models\Kelas;
 use App\Models\Pelajaran;
 use App\Models\Siswa;
@@ -14,11 +14,11 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $guru = Guru::count();
+        // $karyawan = Karyawans::count();
         $kelas = Kelas::count();
         $pelajaran = Pelajaran::count();
         $siswa = Siswa::count();
 
-        return view('dashboard.admin.welcome', compact('guru', 'kelas', 'pelajaran', 'siswa'));
+        return view('dashboard.admin.welcome', compact('kelas', 'pelajaran', 'siswa'));
     }
 }

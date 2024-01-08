@@ -13,8 +13,9 @@ class Nilai extends Model
 
     protected $fillable = [
         'siswa_id',
-        'pelajaran_id',
-        'nilai'
+        'karyawan_pelajaran_id',
+        'nilai',
+        'type'
     ];
 
     public function siswa(): BelongsTo

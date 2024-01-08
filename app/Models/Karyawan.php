@@ -8,19 +8,19 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Guru extends Authenticatable implements AuthenticatableContract
+class Karyawan extends Authenticatable implements AuthenticatableContract
 {
     use HasFactory;
 
     protected $fillable = [
-        'nip',
-        'nama_guru',
+        'nama',
         'email',
         'password'
     ];
 
-    public function kelases(): HasMany
-    {
-        return $this->hasMany(Kelas_bridge::class, 'siswa_id');
-    }
+    // public function kelases(): HasMany
+    // {
+    //     return $this->hasMany(Kelas_bridge::class, 'siswa_id');
+    // }
+
 }

@@ -39,7 +39,7 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if (!Auth::guard('guru')->attempt($validate)) {
+        if (!Auth::guard('karyawan')->attempt($validate)) {
             return redirect()->to('/login-guru')->with('error', 'Invalid Credentials');
         }
 

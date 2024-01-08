@@ -1,30 +1,20 @@
 @extends('dashboard.guru.base')
 @section('content')
 <div class="page-heading d-flex justify-content-between items-center">
-    <h3>Data Diri</h3>
+    <h3>Akun {{$data->nama}}</h3>
 </div>
 
 <div class="page-content">
     <section class="section">
         <div class="card">
             <div class="card-body">
-                <form action="/guru/profile/{{ $data->id }}" method="POST">
+                <form action="/guru/akun/{{ $data->id }}" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
-                    
-                    <div class="form-group">
-                        <label for="basicInput">NIP (Nomor Induk Pegawi)</label>
-                        <input type="text" readonly disabled class="form-control" value="{{ $data->nip }}" id="basicInput" placeholder="Enter email">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="basicInput">Nama Guru</label>
-                        <input type="text" readonly disabled value="{{ $data->nama_guru }}" class="form-control" id="basicInput" placeholder="Enter email">
-                    </div>
                         
                     <div class="form-group">
                         <label for="basicInput">Email</label>
-                        <input type="text" readonly disabled class="form-control" value="{{ $data->email }}" id="basicInput" placeholder="Enter email">
+                        <input type="text" readonly disabled class="form-control" value="{{ $data->email }}" id="basicInput">
                     </div>
 
                     <div class="form-group">

@@ -19,7 +19,7 @@ class NilaiController extends Controller
 
         $mata_pelajarans = Pelajaran::all();
         $siswas = Siswa::whereHas('kelases', function ($query) use ($guru) {
-            $query->where('guru_id', $guru->id);
+            $query->where('karyawan_id', $guru->id);
         })->with('nilais', 'absen', 'th')->get();
         return view('dashboard.guru.nilais.index', compact('siswas', 'mata_pelajarans'));
     }
@@ -32,7 +32,7 @@ class NilaiController extends Controller
         $guru = $request->user();
 
         $siswas = Siswa::whereHas('kelases', function ($query) use ($guru) {
-            $query->where('guru_id', $guru->id);
+            $query->where('karyawan_id', $guru->id);
         })->with('nilais')->get();
 
         $pelajarans = Pelajaran::all();

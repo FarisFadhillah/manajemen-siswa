@@ -38,14 +38,6 @@
                         <span>Data Pendaftaran</span>
                     </a>
                 </li>
-                
-                <li
-                    class="sidebar-item {{ (request()->is('admin/tahun-ajarans*')) ? "active" : "" }}">
-                    <a href="/admin/tahun-ajarans" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Data Tahun Ajaran</span>
-                    </a>
-                </li>
 
                 <li
                     class="sidebar-item {{ (request()->is('admin/gurus*')) ? "active" : "" }}">

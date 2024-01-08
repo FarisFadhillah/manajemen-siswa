@@ -21,19 +21,13 @@ class Siswa extends Authenticatable implements AuthenticatableContract
         'tanggal_lahir',
         'email',
         'password',
-        'nis',
-        'nisn',
-        'nik',
-        'alamat',
-        'no_tlp',
-        'semester',
-        'th_id'
+        'kewarganegaraan',
+        'agama',
+        'no_telp',
+        'status',
+        'status_penerimaan'
     ];
 
-    public function th(): BelongsTo
-    {
-        return $this->belongsTo(Tahun_ajaran::class);
-    }
 
     public function nilais(): HasMany
     {
@@ -52,6 +46,6 @@ class Siswa extends Authenticatable implements AuthenticatableContract
 
     public function kelases(): HasMany
     {
-        return $this->hasMany(Kelas_bridge::class, 'siswa_id');
+        return $this->hasMany(WaliKelas::class, 'siswa_id');
     }
 }

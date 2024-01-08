@@ -12,7 +12,6 @@
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
-                            <th>NIP (Nomor Induk Pegawai)</th>
                             <th>Nama Guru</th>
                             <th>Email</th>
                             <th>Action</th>
@@ -26,11 +25,11 @@
                         @else
                             @foreach ($gurus as $val)
                             <tr>
-                                <td>{{ $val->nip }}</td>
-                                <td>{{ $val->nama_guru }}</td>
+                                <td>{{ $val->nama }}</td>
                                 <td>{{ $val->email }}</td>
                                 <td class="d-flex">
-                                    <a href="/admin/gurus/{{ $val->id }}/edit" class="btn icon btn-primary me-2"><i class="bi bi-pencil"></i></a>
+                                    {{-- <a href="/admin/gurus/{{ $val->id }}/edit" class="btn icon btn-warning me-2"><i class="bi bi-pencil"></i></a> --}}
+                                    <a href="/admin/gurus/{{ $val->id }}" class="btn icon btn-primary me-2"><i class="bi bi-search"></i></a>
                                     <form action="/admin/gurus/{{ $val->id }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">

@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Kelas_bridge extends Model
+class WaliKelas extends Model
 {
     use HasFactory;
 
+    protected $table = 'wali_kelases';
     protected $fillable = [
         'siswa_id',
-        'guru_id',
+        'karyawan_id',
         'kelas_id'
     ];
 
@@ -24,7 +25,7 @@ class Kelas_bridge extends Model
 
     public function guru(): BelongsTo
     {
-        return $this->belongsTo(Guru::class);
+        return $this->belongsTo(Karyawan::class);
     }
 
     public function kelas(): BelongsTo

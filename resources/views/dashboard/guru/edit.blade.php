@@ -1,4 +1,4 @@
-@extends('dashboard.admin.base')
+@extends('dashboard.guru.base')
 @section('content')
 <div class="page-heading d-flex justify-content-between items-center">
     <h3>Edit Data {{$guru->nama}}</h3>
@@ -8,7 +8,7 @@
     <section class="section">
         <div class="card">
             <div class="card-body">
-                <form action="/admin/gurus/{{ $guru->id }}" method="POST">
+                <form action="/guru/update-profile/{{ $guru->id }}" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     
@@ -27,8 +27,8 @@
                         <label for="basicInput">Jenis Kelamin</label>
                         <select class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin">
                             <option value="" selected disabled>Pilih Jenis Kelamin</option>
-                            <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                            <option value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            <option value="Laki-laki" {{ $guruDetail->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="Perempuan" {{ $guruDetail->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                         </select>
                         @error('jenis_kelamin')
                         <div class="invalid-feedback">
@@ -38,17 +38,6 @@
                         @enderror
                     </div>
                     
-                    <div class="form-group">
-                        <label for="basicInput">Email</label>
-                        <input type="text" value="{{ $guru->email }}" class="form-control @error('email') is-invalid @enderror" name="email" id="basicInput">
-                        @error('email')
-                        <div class="invalid-feedback">
-                            <i class="bx bx-radio-circle"></i>
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-    
                     <div class="form-group">
                         <label for="basicInput">NIP (Nomor Induk Pegawai)</label>
                         <input type="text" value="{{ $guruDetail->nip ?? '' }}" class="form-control @error('nip') is-invalid @enderror" name="nip" id="basicInput">

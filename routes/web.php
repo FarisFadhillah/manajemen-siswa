@@ -69,10 +69,13 @@ Route::middleware(['auth:web'])->prefix('admin')->group(function () {
 
 });
 
-Route::middleware(['auth:guru'])->prefix('guru')->group(function () {
+Route::middleware(['auth:karyawan'])->prefix('guru')->group(function () {
     Route::get('/', [GuruDashboardController::class, 'index']);
-    Route::get('/profile', [GuruDashboardController::class, 'guru']);
-    Route::put('/profile/{id}', [GuruDashboardController::class, 'update']);
+    Route::get('/akun', [GuruDashboardController::class, 'akun']);
+    Route::put('/akun/{id}', [GuruDashboardController::class, 'updatePass']);
+    Route::get('/profile', [GuruDashboardController::class, 'show']);
+    Route::get('/{id}/edit', [GuruDashboardController::class, 'edit']);
+    Route::put('/update-profile/{id}', [GuruDashboardController::class, 'update']);
 
     Route::resource('nilais', GuruNilaiController::class);
     Route::resource('absens', GuruAbsenController::class);
