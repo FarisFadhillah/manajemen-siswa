@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Guru;
+use App\Models\Karyawan;
 use App\Models\Kelas;
-use App\Models\Kelas_bridge;
 use App\Models\Siswa;
+use App\Models\Wali_kelas;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -16,7 +16,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas_bridges = Kelas_bridge::with('siswa', 'kelas', 'guru')->get();
+        $kelas_bridges = Wali_kelas::with('siswa', 'kelas', 'karyawan')->get();
 
         return view('dashboard.admin.kelases.index', compact('kelas_bridges'));
     }
@@ -28,9 +28,17 @@ class KelasController extends Controller
     {
         $kelases = Kelas::all();
         $siswas = Siswa::with('kelases')->get();
-        $gurus = Guru::all();
 
-        return view('dashboard.admin.kelases.create', compact('kelases', 'siswas', 'gurus'));
+        // Retrieve all Karyawan records with their associated KaryawanTugas and Jabatan
+        $karyawanTugasRecords = Karyawan::with(['karyawan_tugas', 'karyawan_tugas.jabatan'])
+            ->get();
+
+        // Filter only the records where the jabatan is 'guru'
+        $karyawan = $karyawanTugasRecords->filter(function ($karyawan) {
+            return optional($karyawan->karyawan_tugas)->jabatan->jabatan == 'Guru';
+        });
+
+        return view('dashboard.admin.kelases.create', compact('kelases', 'siswas', 'karyawan'));
     }
 
     /**
@@ -41,14 +49,14 @@ class KelasController extends Controller
 
         $validate = $request->validate([
             'siswa_id' => 'required|array',
-            'guru_id' => 'required',
+            'karyawan_id' => 'required',
             'kelas_id' => 'required'
         ]);
 
         foreach ($validate['siswa_id'] as $val) {
-            Kelas_bridge::create([
+            Wali_kelas::create([
                 'siswa_id' => $val,
-                'guru_id' => $validate['guru_id'],
+                'karyawan_id' => $validate['karyawan_id'],
                 'kelas_id' => $validate['kelas_id']
             ]);
         }
@@ -69,13 +77,13 @@ class KelasController extends Controller
      */
     public function edit(string $id)
     {
-        $kelas_bridge = Kelas_bridge::find($id);
+        $wali_kelas = Wali_kelas::find($id);
 
         $kelases = Kelas::all();
         $siswas = Siswa::all();
-        $gurus = Guru::all();
+        $gurus = Karyawan::all();
 
-        return view('dashboard.admin.kelases.edit', compact('kelases', 'siswas', 'gurus', 'kelas_bridge'));
+        return view('dashboard.admin.kelases.edit', compact('kelases', 'siswas', 'gurus', 'wali_kelas'));
     }
 
     /**
@@ -85,11 +93,11 @@ class KelasController extends Controller
     {
         $validate = $request->validate([
             'siswa_id' => 'required',
-            'guru_id' => 'required',
+            'karyawan_id' => 'required',
             'kelas_id' => 'required'
         ]);
 
-        Kelas_bridge::where('id', $id)->update($validate);
+        Wali_kelas::where('id', $id)->update($validate);
 
         return redirect()->to('admin/kelases')->with('success', 'Successfully Updated Kelas');
     }
@@ -99,7 +107,7 @@ class KelasController extends Controller
      */
     public function destroy(string $id)
     {
-        Kelas_bridge::where('id', $id)->delete();
+        Wali_kelas::where('id', $id)->delete();
 
         return redirect()->to('admin/kelases')->with('success', 'Successfully Deleted Kelas');
     }

@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Guru</title>
+<title>Guru</title>
 
 <link rel="stylesheet" href="{{asset("assets/css/main/app.css")}}">
 <link rel="stylesheet" href="{{ asset("assets/css/main/app-dark.css") }}">

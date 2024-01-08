@@ -46,6 +46,6 @@ class Siswa extends Authenticatable implements AuthenticatableContract
 
     public function kelases(): HasMany
     {
-        return $this->hasMany(WaliKelas::class, 'siswa_id');
+        return $this->hasMany(Wali_Kelas::class, 'siswa_id');
     }
 }

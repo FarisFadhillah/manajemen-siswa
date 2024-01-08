@@ -27,7 +27,7 @@
                             @foreach ($kelas_bridges as $val)
                             <tr>
                                 <td>{{ $val->siswa->nama_siswa }}</td>
-                                <td>{{ $val->guru->nama_guru }}</td>
+                                <td>{{ $val->karyawan->nama }}</td>
                                 <td>{{ $val->kelas->kelas }}</td>
                                 <td class="d-flex">
                                     <a href="/admin/kelases/{{ $val->id }}/edit" class="btn icon btn-primary me-2"><i class="bi bi-pencil"></i></a>

@@ -25,10 +25,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-
-        $ths = Tahun_ajaran::all();
-
-        return view('dashboard.admin.siswas.create', compact('ths'));
+        return view('dashboard.admin.siswas.create');
     }
 
     /**
@@ -64,9 +61,8 @@ class SiswaController extends Controller
     public function edit(string $id)
     {
         $siswa = Siswa::find($id);
-        $ths = Tahun_ajaran::all();
 
-        return view('dashboard.admin.siswas.edit', compact('siswa', 'ths'));
+        return view('dashboard.admin.siswas.edit', compact('siswa'));
     }
 
     /**

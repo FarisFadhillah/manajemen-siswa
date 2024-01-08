@@ -8,7 +8,7 @@
     <section class="section">
         <div class="card">
             <div class="card-body">
-                <form action="/admin/kelases/{{ $kelas_bridge->id }}" method="POST">
+                <form action="/admin/kelases/{{ $wali_kelas->id }}" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
 
@@ -16,7 +16,7 @@
                         <label for="basicSelect">Daftar Siswa</label>
                         <select name="siswa_id" class="form-select @error('siswa_id') is-invalid @enderror" id="basicSelect">
                             @foreach ($siswas as $val)
-                                <option {{ $kelas_bridge->siswa_id == $val->id ? "selected" : "" }} value="{{ $val->id }}">{{ $val->nama_siswa }}</option>
+                                <option {{ $wali_kelas->siswa_id == $val->id ? "selected" : "" }} value="{{ $val->id }}">{{ $val->nama_siswa }}</option>
                             @endforeach
                         </select>
                         @error('siswa_id')
@@ -29,13 +29,13 @@
 
                     <fieldset class="form-group">
                         <label for="basicSelect">Daftar Guru</label>
-                        <select class="form-select @error('guru_id') is-invalid @enderror" name="guru_id" id="basicSelect">
+                        <select class="form-select @error('karyawan_id') is-invalid @enderror" name="karyawan_id" id="basicSelect">
                             <option selected hidden>Pilih Guru</option>
                             @foreach ($gurus as $val)
-                                <option {{ $kelas_bridge->guru_id == $val->id ? "selected" : "" }} value="{{ $val->id }}">{{ $val->nama_guru }}</option>
+                                <option {{ $wali_kelas->karyawan_id == $val->id ? "selected" : "" }} value="{{ $val->id }}">{{ $val->nama }}</option>
                             @endforeach
                         </select>
-                        @error('guru_id')
+                        @error('karyawan_id')
                         <div class="invalid-feedback">
                             <i class="bx bx-radio-circle"></i>
                             {{ $message }}
@@ -48,7 +48,7 @@
                         <select class="form-select @error('kelas_id') is-invalid @enderror" name="kelas_id" id="basicSelect">
                             <option selected hidden>Pilih Kelas</option>
                             @foreach ($kelases as $val)
-                                <option {{ $kelas_bridge->kelas_id == $val->id ? "selected" : "" }} value="{{ $val->id }}">{{ $val->kelas }}</option>
+                                <option {{ $wali_kelas->kelas_id == $val->id ? "selected" : "" }} value="{{ $val->id }}">{{ $val->kelas }}</option>
                             @endforeach
                         </select>
                         @error('kelas_id')

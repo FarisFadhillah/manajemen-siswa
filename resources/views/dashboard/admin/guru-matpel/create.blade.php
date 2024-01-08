@@ -12,9 +12,9 @@
                     @csrf
     
                     <div class="form-group">
-                        <label for="basicInput">Nama Karyawan</label>
+                        <label for="basicInput">Nama Guru</label>
                         <select class="form-control @error('karyawan_id') is-invalid @enderror" id="karyawan_id" name="karyawan_id">
-                            <option value="" selected disabled>Pilih Karyawan</option>
+                            <option value="" selected disabled>Pilih Guru</option>
                             @foreach($karyawan as $karyawanItem)
                                 <option value="{{ $karyawanItem->id }}">{{ $karyawanItem->nama }}</option>
                             @endforeach

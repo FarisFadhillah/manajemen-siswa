@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class WaliKelas extends Model
+class Wali_kelas extends Model
 {
     use HasFactory;
 
@@ -23,7 +23,7 @@ class WaliKelas extends Model
         return $this->belongsTo(Siswa::class, 'siswa_id');
     }
 
-    public function guru(): BelongsTo
+    public function karyawan(): BelongsTo
     {
         return $this->belongsTo(Karyawan::class);
     }

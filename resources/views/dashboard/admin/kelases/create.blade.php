@@ -29,14 +29,14 @@
                     </fieldset>
 
                     <fieldset class="form-group">
-                        <label for="basicSelect">Daftar Guru</label>
-                        <select class="form-select @error('guru_id') is-invalid @enderror" name="guru_id" id="basicSelect">
-                            <option selected hidden>Pilih Guru</option>
-                            @foreach ($gurus as $val)
-                                <option value="{{ $val->id }}">{{ $val->nama_guru }}</option>
+                        <label for="basicInput">Nama Guru</label>
+                        <select class="form-control @error('karyawan_id') is-invalid @enderror" id="karyawan_id" name="karyawan_id">
+                            <option value="" selected disabled>Pilih Guru</option>
+                            @foreach($karyawan as $karyawanItem)
+                                <option value="{{ $karyawanItem->id }}">{{ $karyawanItem->nama }}</option>
                             @endforeach
                         </select>
-                        @error('guru_id')
+                        @error('karyawan_id')
                         <div class="invalid-feedback">
                             <i class="bx bx-radio-circle"></i>
                             {{ $message }}

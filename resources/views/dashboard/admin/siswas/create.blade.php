@@ -75,22 +75,6 @@
                         @enderror
                     </fieldset>
 
-                    <fieldset class="form-group">
-                        <label for="basicSelect">Tahun Ajaran</label>
-                        <select class="form-select @error('th_id') is-invalid @enderror" name="th_id" id="basicSelect">
-                            <option selected hidden>Pilih Tahun Ajaran</option>
-                            @foreach ($ths as $val)
-                            <option value="{{ $val->id }}">{{ $val->tahun_ajaran }}</option>
-                            @endforeach
-                        </select>
-                        @error('th_id')
-                        <div class="invalid-feedback">
-                            <i class="bx bx-radio-circle"></i>
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </fieldset>
-
                     <div class="text-end">
                         <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
                     </div>
