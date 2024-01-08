@@ -23,6 +23,16 @@ class Karyawan extends Authenticatable implements AuthenticatableContract
         return $this->belongsToMany(Jabatan::class, 'karyawan_tugas', 'karyawan_id', 'jabatan_id');
     }
 
+    public function Pelajarans()
+    {
+        return $this->belongsToMany(Jabatan::class, 'karyawan_tugas', 'karyawan_id', 'jabatan_id');
+    }
+
+    public function karyawan_tugas()
+    {
+        return $this->hasOne(Karyawan_tugas::class);
+    }
+
     // public function kelases(): HasMany
     // {
     //     return $this->hasMany(Kelas_bridge::class, 'siswa_id');

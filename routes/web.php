@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\GuruController as AdminGuruController;
+use App\Http\Controllers\Admin\GuruMatpelController;
 use App\Http\Controllers\Admin\JabatanController;
 use App\Http\Controllers\Admin\KategoriKelasController as AdminKategoriKelasController;
 use App\Http\Controllers\Admin\PelajaranController as AdminPelajaranController;
@@ -67,6 +68,7 @@ Route::middleware(['auth:web'])->prefix('admin')->group(function () {
     Route::resource('nilais', AdminNilaiController::class);
     Route::resource('jabatans', JabatanController::class);
     Route::resource('tugas', TugasController::class);
+    Route::resource('guru-matpel', GuruMatpelController::class);
     Route::resource('pendaftarans', AdminPendaftaranController::class);
     Route::post('/pendaftaran/konfirmasi/{id}', [AdminPendaftaranController::class, 'konfirmasi']);
 

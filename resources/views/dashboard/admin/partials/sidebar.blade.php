@@ -88,6 +88,14 @@
                 </li>
 
                 <li
+                    class="sidebar-item {{ (request()->is('admin/guru-matpel*')) ? "active" : "" }}">
+                    <a href="/admin/guru-matpel" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Data Assign Guru Mata Pelajaran</span>
+                    </a>
+                </li>
+
+                <li
                     class="sidebar-item {{ (request()->is('admin/siswas*')) ? "active" : "" }}">
                     <a href="/admin/siswas" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>

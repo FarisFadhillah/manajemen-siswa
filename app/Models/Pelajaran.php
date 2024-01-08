@@ -12,4 +12,9 @@ class Pelajaran extends Model
     protected $fillable = [
         'pelajaran'
     ];
+
+    public function karyawans()
+    {
+        return $this->belongsToMany(Karyawan::class, 'karyawan_tugas', 'jabatan_id', 'karyawan_id');
+    }
 }
