@@ -38,7 +38,7 @@
                         <span>Data Diri</span>
                     </a>
                 </li>
-
+                
                 <li
                     class="sidebar-item {{ (request()->is('guru/nilais*')) ? "active" : "" }}">
                     <a href="/guru/nilais" class='sidebar-link'>

@@ -12,4 +12,10 @@ class Jabatan extends Model
     protected $fillable = [
         'jabatan'
     ];
+
+    public function karyawans()
+    {
+        return $this->belongsToMany(Karyawan::class, 'karyawan_tugas', 'jabatan_id', 'karyawan_id');
+    }
+    
 }

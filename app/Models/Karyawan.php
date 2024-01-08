@@ -18,6 +18,11 @@ class Karyawan extends Authenticatable implements AuthenticatableContract
         'password'
     ];
 
+    public function jabatans()
+    {
+        return $this->belongsToMany(Jabatan::class, 'karyawan_tugas', 'karyawan_id', 'jabatan_id');
+    }
+
     // public function kelases(): HasMany
     // {
     //     return $this->hasMany(Kelas_bridge::class, 'siswa_id');

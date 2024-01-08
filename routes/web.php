@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\GuruController as AdminGuruController;
+use App\Http\Controllers\Admin\JabatanController;
 use App\Http\Controllers\Admin\KategoriKelasController as AdminKategoriKelasController;
 use App\Http\Controllers\Admin\PelajaranController as AdminPelajaranController;
 use App\Http\Controllers\Admin\SiswaController as AdminSiswaController;
@@ -9,7 +10,7 @@ use App\Http\Controllers\Admin\TahunAjaranController as AdminTahunAjaranControll
 use App\Http\Controllers\Admin\KelasController as AdminKelasController;
 use App\Http\Controllers\Admin\NilaiController as AdminNilaiController;
 use App\Http\Controllers\Admin\PendaftaranController as AdminPendaftaranController;
-
+use App\Http\Controllers\Admin\TugasController;
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
 use App\Http\Controllers\Guru\NilaiController as GuruNilaiController;
 use App\Http\Controllers\Guru\AbsenController as GuruAbsenController;
@@ -64,6 +65,8 @@ Route::middleware(['auth:web'])->prefix('admin')->group(function () {
     Route::resource('siswas', AdminSiswaController::class);
     Route::resource('kelases', AdminKelasController::class);
     Route::resource('nilais', AdminNilaiController::class);
+    Route::resource('jabatans', JabatanController::class);
+    Route::resource('tugas', TugasController::class);
     Route::resource('pendaftarans', AdminPendaftaranController::class);
     Route::post('/pendaftaran/konfirmasi/{id}', [AdminPendaftaranController::class, 'konfirmasi']);
 

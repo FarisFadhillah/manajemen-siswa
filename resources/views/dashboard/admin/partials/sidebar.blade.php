@@ -40,6 +40,22 @@
                 </li>
 
                 <li
+                    class="sidebar-item {{ (request()->is('admin/jabatans*')) ? "active" : "" }}">
+                    <a href="/admin/jabatans" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Data Jabatan</span>
+                    </a>
+                </li>
+
+                <li
+                    class="sidebar-item {{ (request()->is('admin/tugas*')) ? "active" : "" }}">
+                    <a href="/admin/tugas" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Assign Jabatan</span>
+                    </a>
+                </li>
+
+                <li
                     class="sidebar-item {{ (request()->is('admin/gurus*')) ? "active" : "" }}">
                     <a href="/admin/gurus" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
