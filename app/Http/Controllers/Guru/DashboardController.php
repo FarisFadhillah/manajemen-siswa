@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Guru;
 use App\Http\Controllers\Controller;
 use App\Models\Karyawan;
 use App\Models\Karyawan_detail;
-use App\Models\WaliKelas;
+use App\Models\Wali_kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,8 +15,8 @@ class DashboardController extends Controller
     {
         $guru = $request->user();
 
-        $kelas = WaliKelas::where('karyawan_id', $guru->id)->with('kelas')->first();
-        $kelasCount = WaliKelas::where('karyawan_id', $guru->id)->count();
+        $kelas = Wali_kelas::where('karyawan_id', $guru->id)->with('kelas')->first();
+        $kelasCount = Wali_kelas::where('karyawan_id', $guru->id)->count();
 
         return view('dashboard.guru.welcome', compact('kelas', 'kelasCount'));
     }

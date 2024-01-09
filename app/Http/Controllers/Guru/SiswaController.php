@@ -14,7 +14,7 @@ class SiswaController extends Controller
 
         $siswas = Siswa::whereHas('kelases', function ($query) use ($guru) {
             $query->where('karyawan_id', $guru->id);
-        })->with('nilais', 'absen', 'th')->get();
+        })->with('nilais', 'absen')->get();
 
         return view('dashboard.guru.siswas.index', compact('siswas'));
     }

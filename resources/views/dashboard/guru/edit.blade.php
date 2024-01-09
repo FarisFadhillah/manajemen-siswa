@@ -27,8 +27,8 @@
                         <label for="basicInput">Jenis Kelamin</label>
                         <select class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin">
                             <option value="" selected disabled>Pilih Jenis Kelamin</option>
-                            <option value="Laki-laki" {{ $guruDetail->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                            <option value="Perempuan" {{ $guruDetail->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            <option value="Laki-laki" {{ optional($guruDetail)->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="Perempuan" {{ optional($guruDetail)->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                         </select>
                         @error('jenis_kelamin')
                         <div class="invalid-feedback">

@@ -14,8 +14,7 @@
                             <th>NIS (Nomor Induk Siswa)</th>
                             <th>NISN (Nomor Induk Siswa Nasional)</th>
                             <th>Nama Siswa</th>
-                            <th>Semester</th>
-                            <th>Tahun Ajaran</th>
+                            {{-- <th>Semester</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -29,8 +28,7 @@
                                 <td>{{ $val->nis }}</td>
                                 <td>{{ $val->nisn }}</td>
                                 <td>{{ $val->nama_siswa }}</td>
-                                <td>{{ $val->semester }}</td>
-                                <td>{{ $val->th->tahun_ajaran }}</td>
+                                {{-- <td>{{ $val->semester }}</td> --}}
                             </tr>
                             @endforeach
                         @endif

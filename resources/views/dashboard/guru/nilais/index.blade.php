@@ -17,8 +17,6 @@
                 <table class="table table-striped text-center" id="table1">
                     <thead>
                         <tr>
-                            <th rowspan="2">NIS</th>
-                            <th rowspan="2">NISN</th>
                             <th rowspan="2">Nama Siswa</th>
                             <th colspan="4">Total Absen</th>
                             <th colspan="{{ count($mata_pelajarans) }}">Mata Pelajaran</th>
@@ -42,8 +40,6 @@
                         @else
                             @foreach ($siswas as $val)
                             <tr>
-                                <td>{{ $val->nis }}</td>
-                                <td>{{ $val->nisn }}</td>
                                 <td>{{ $val->nama_siswa }}</td>
                                 <td>{{ $val->absen ? $val->absen->total_masuk : 0 }}</td>
                                 <td>{{ $val->absen ? $val->absen->total_sakit : 0 }}</td>

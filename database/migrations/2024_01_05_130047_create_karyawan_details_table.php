@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nip');
             $table->string('nuptk');
             $table->string('nbm');
-            $table->date('jenis_kelamin');
+            $table->string('jenis_kelamin');
             $table->date('tanggal_mulai');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
