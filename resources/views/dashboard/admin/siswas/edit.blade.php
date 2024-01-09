@@ -56,7 +56,7 @@
                         @enderror
                     </div>
 
-                    <fieldset class="form-group">
+                    {{-- <fieldset class="form-group">
                         <label for="basicSelect">Semester</label>
                         <select class="form-select @error('semester') is-invalid @enderror" name="semester" id="basicSelect">
                             <option selected hidden>Pilih Semester</option>
@@ -69,23 +69,7 @@
                             {{ $message }}
                         </div>
                         @enderror
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                        <label for="basicSelect">Tahun Ajaran</label>
-                        <select class="form-select @error('th_id') is-invalid @enderror" name="th_id" id="basicSelect">
-                            <option selected hidden>Pilih Tahun Ajaran</option>
-                            @foreach ($ths as $val)
-                            <option {{ $siswa->th_id == $val->id ? "selected" : "" }} value="{{ $val->id }}">{{ $val->tahun_ajaran }}</option>
-                            @endforeach
-                        </select>
-                        @error('th_id')
-                        <div class="invalid-feedback">
-                            <i class="bx bx-radio-circle"></i>
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </fieldset>
+                    </fieldset> --}}
 
                     <div class="text-end">
                         <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>

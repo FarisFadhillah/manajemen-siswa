@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Siswa;
 use App\Models\Tahun_ajaran;
+use App\Models\Wali_kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +16,8 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $siswas = Siswa::all();
+        // Retrieve all students and their associated classes (if any)
+        $siswas = Wali_kelas::all();
 
         return view('dashboard.admin.siswas.index', compact('siswas'));
     }
@@ -74,8 +76,6 @@ class SiswaController extends Controller
             'nama_siswa' => 'required',
             'nis' => 'required',
             'nisn' => 'required',
-            'semester' => 'required',
-            'th_id' => 'required',
             'email' => 'required',
         ]);
 

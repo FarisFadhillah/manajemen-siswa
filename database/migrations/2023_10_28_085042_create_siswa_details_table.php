@@ -28,6 +28,7 @@ return new class extends Migration
             $table->integer('bb')->nullable();
             $table->integer('jumlah_sodara')->nullable();
             $table->string('tahun_ajaran')->nullable();
+            $table->string('semester')->nullable();
             $table->timestamps();
         });
     }
