@@ -30,7 +30,7 @@ class GuruMatpelController extends Controller
 
         // Filter only the records where the jabatan is 'guru'
         $karyawan = $karyawanTugasRecords->filter(function ($karyawan) {
-            return optional($karyawan->karyawan_tugas)->jabatan->jabatan == 'Guru';
+            return optional($karyawan->karyawan_tugas)->jabatan->jabatan == 'guru';
         });
 
         $pelajaran = Pelajaran::all();
@@ -72,7 +72,7 @@ class GuruMatpelController extends Controller
 
         // Filter only the records where the jabatan is 'guru'
         $karyawan = $karyawanTugasRecords->filter(function ($karyawan) {
-            return optional($karyawan->karyawan_tugas)->jabatan->jabatan == 'Guru';
+            return optional($karyawan->karyawan_tugas)->jabatan->jabatan == 'guru';
         });
         $pelajaran = Pelajaran::all();
         return view('dashboard.admin.guru-matpel.edit', compact('data', 'karyawan', 'pelajaran'));

@@ -28,10 +28,10 @@
                     </fieldset>
 
                     <fieldset class="form-group">
-                        <label for="basicSelect">Daftar Guru</label>
+                        <label for="basicSelect">Nama Guru</label>
                         <select class="form-select @error('karyawan_id') is-invalid @enderror" name="karyawan_id" id="basicSelect">
                             <option selected hidden>Pilih Guru</option>
-                            @foreach ($gurus as $val)
+                            @foreach ($karyawan as $val)
                                 <option {{ $wali_kelas->karyawan_id == $val->id ? "selected" : "" }} value="{{ $val->id }}">{{ $val->nama }}</option>
                             @endforeach
                         </select>

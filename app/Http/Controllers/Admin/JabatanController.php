@@ -34,6 +34,8 @@ class JabatanController extends Controller
         $validate = $request->validate([
             'jabatan' => 'required'
         ]);
+        
+        $validate['jabatan'] = strtolower($validate['jabatan']);
 
         Jabatan::create($validate);
         return redirect()->to('/admin/jabatans')->with('success', 'Successfully Created Jabatan');

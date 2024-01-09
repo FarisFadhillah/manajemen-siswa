@@ -35,7 +35,7 @@ class KelasController extends Controller
 
         // Filter only the records where the jabatan is 'guru'
         $karyawan = $karyawanTugasRecords->filter(function ($karyawan) {
-            return optional($karyawan->karyawan_tugas)->jabatan->jabatan == 'Guru';
+            return optional($karyawan->karyawan_tugas)->jabatan->jabatan == 'guru';
         });
 
         return view('dashboard.admin.kelases.create', compact('kelases', 'siswas', 'karyawan'));
@@ -81,9 +81,15 @@ class KelasController extends Controller
 
         $kelases = Kelas::all();
         $siswas = Siswa::all();
-        $gurus = Karyawan::all();
+        // Retrieve all Karyawan records with their associated KaryawanTugas and Jabatan
+        $karyawanTugasRecords = Karyawan::with(['karyawan_tugas', 'karyawan_tugas.jabatan'])
+            ->get();
 
-        return view('dashboard.admin.kelases.edit', compact('kelases', 'siswas', 'gurus', 'wali_kelas'));
+        // Filter only the records where the jabatan is 'guru'
+        $karyawan = $karyawanTugasRecords->filter(function ($karyawan) {
+            return optional($karyawan->karyawan_tugas)->jabatan->jabatan == 'guru';
+        });
+        return view('dashboard.admin.kelases.edit', compact('kelases', 'siswas', 'karyawan', 'wali_kelas'));
     }
 
     /**
