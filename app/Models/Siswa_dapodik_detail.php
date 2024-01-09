@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Data_tambahan_siswa extends Model
+class Siswa_dapodik_detail extends Model
 {
     use HasFactory;
 
@@ -16,12 +16,6 @@ class Data_tambahan_siswa extends Model
         'nomor_peserta',
         'nomor_ijasah',
         'hobi',
-        'cita_cita',
-        'doc_ijasah',
-        'doc_akte',
-        'doc_kk',
-        'doc_ktp',
-        'doc_kip',
-        'status',
+        'cita_cita'
     ];
 }
