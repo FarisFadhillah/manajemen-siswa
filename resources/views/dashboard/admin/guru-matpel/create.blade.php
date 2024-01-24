@@ -15,7 +15,7 @@
                         <label for="basicInput">Nama Guru</label>
                         <select class="form-control @error('karyawan_id') is-invalid @enderror" id="karyawan_id" name="karyawan_id">
                             <option value="" selected disabled>Pilih Guru</option>
-                            @foreach($karyawan as $karyawanItem)
+                            @foreach($karyawan as $karyawanItem)d
                                 <option value="{{ $karyawanItem->id }}">{{ $karyawanItem->nama }}</option>
                             @endforeach
                         </select>

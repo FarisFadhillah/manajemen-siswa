@@ -38,7 +38,12 @@ class Siswa extends Authenticatable implements AuthenticatableContract
     {
         return $this->HasOne(Absen::class, 'siswa_id', 'id');
     }
-    
+
+    public function wali_kelas(): HasOne
+    {
+        return $this->HasOne(Wali_kelas::class, 'siswa_id', 'id');
+    }
+
     public function siswa_dapodik(): HasOne
     {
         return $this->HasOne(Siswa_dapodik_detail::class, 'siswa_id', 'id');
@@ -47,5 +52,10 @@ class Siswa extends Authenticatable implements AuthenticatableContract
     public function kelases(): HasMany
     {
         return $this->hasMany(Wali_Kelas::class, 'siswa_id');
+    }
+
+    public function karyawan_pelajarans()
+    {
+        return $this->hasMany(Karyawan_pelajaran::class);
     }
 }

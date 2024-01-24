@@ -81,9 +81,10 @@ Route::middleware(['auth:karyawan'])->prefix('guru')->group(function () {
     Route::get('/profile', [GuruDashboardController::class, 'show']);
     Route::get('/{id}/edit', [GuruDashboardController::class, 'edit']);
     Route::put('/update-profile/{id}', [GuruDashboardController::class, 'update']);
-
+    
     Route::resource('nilais', GuruNilaiController::class);
     Route::resource('absens', GuruAbsenController::class);
+    Route::post('/absen/fetch-siswa', [GuruAbsenController::class, 'fetchStudentData']);
     Route::resource('siswas', GuruSiswaController::class);
 });
 

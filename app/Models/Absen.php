@@ -16,4 +16,14 @@ class Absen extends Model
         'tanggal',
         'keterangan'
     ];
+
+    public function pelajaran()
+    {
+        return $this->belongsTo(Pelajaran::class, 'pelajaran_id');
+    }
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id');
+    }
 }

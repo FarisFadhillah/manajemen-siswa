@@ -48,6 +48,14 @@
                 </li>
 
                 <li
+                    class="sidebar-item {{ (request()->is('guru/absens*')) ? "active" : "" }}">
+                    <a href="/guru/absens" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Data Absen</span>
+                    </a>
+                </li>
+
+                <li
                     class="sidebar-item {{ (request()->is('guru/siswas*')) ? "active" : "" }}">
                     <a href="/guru/siswas" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
