@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\CalonSiswa;
 
 use App\Http\Controllers\Controller;
-use App\Models\Data_lengkap_siswa;
-use App\Models\Data_ortu_siswa;
-use App\Models\Data_tambahan_siswa;
+use App\Models\DataLengkapSiswa;
+use App\Models\DataOrtuSiswa;
+use App\Models\DataTambahanSiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,7 +15,7 @@ class DataLengkapSiswaController extends Controller
     {
         $siswa = $request->user();
 
-        $data = Data_ortu_siswa::where('siswa_id', $siswa->id)->first();
+        $data = DataOrtuSiswa::where('siswa_id', $siswa->id)->first();
 
         return view('dashboard.siswa.data-ortu', compact('data'));
     }
@@ -107,7 +107,7 @@ class DataLengkapSiswaController extends Controller
     {
         $siswa = $request->user();
 
-        $data = Data_tambahan_siswa::where('siswa_id', $siswa->id)->first();
+        $data = DataTambahanSiswa::where('siswa_id', $siswa->id)->first();
 
         return view('dashboard.siswa.data-tambahan', compact('data'));
     }
@@ -151,7 +151,7 @@ class DataLengkapSiswaController extends Controller
             $this->uploadAndSaveImage($request, 'doc_kip', $data);
 
             // Ini operasi insert (baru)
-            Data_tambahan_siswa::create($data);
+            DataTambahanSiswa::create($data);
         } else {
             $this->uploadAndSaveImage($request, 'doc_ijasah', $data);
             $this->uploadAndSaveImage($request, 'doc_akte', $data);
@@ -160,13 +160,13 @@ class DataLengkapSiswaController extends Controller
             $this->uploadAndSaveImage($request, 'doc_kip', $data);
 
             // Ini operasi update
-            Data_tambahan_siswa::where('id', $id)->update($data);
+            DataTambahanSiswa::where('id', $id)->update($data);
         }
 
         // if ($id == 'new') {
         //     // dd($id);
         //     // Ini operasi insert (baru)
-        //     Data_tambahan_siswa::create([
+        //     DataTambahanSiswa::create([
         //         'siswa_id' => $siswa->id,
         //         'asal_sekolah' => $validate['asal_sekolah'],
         //         'nis' => $validate['nis'],
@@ -183,7 +183,7 @@ class DataLengkapSiswaController extends Controller
         //     ]);
         // } else {
         //     // Ini operasi update
-        //     Data_tambahan_siswa::where('id', $id)->update([
+        //     DataTambahanSiswa::where('id', $id)->update([
         //         'siswa_id' => $siswa->id,
         //         'asal_sekolah' => $validate['asal_sekolah'],
         //         'nis' => $validate['nis'],
@@ -223,7 +223,7 @@ class DataLengkapSiswaController extends Controller
     public function lengkap(Request $request){
         $siswa = $request->user();
 
-        $data = Data_lengkap_siswa::where('siswa_id', $siswa->id)->first();
+        $data = DataLengkapSiswa::where('siswa_id', $siswa->id)->first();
 
         return view('dashboard.siswa.data-lengkap', compact('data'));
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Siswa;
 
 use App\Http\Controllers\Controller;
-use App\Models\Kelas_bridge;
+use App\Models\KelasBridge;
 use App\Models\Pelajaran;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
@@ -16,7 +16,8 @@ class DashboardController extends Controller
     {
         $siswa = $request->user();
 
-        $kelas = Kelas_bridge::where('siswa_id', $siswa->id)->first();
+        $kelas = KelasBridge::where('siswa_id', $siswa->id)->first();
+        // dd($kelas);
         $total_pelajaran = Pelajaran::count();
 
         return view('dashboard.siswa.welcome', compact('kelas', 'total_pelajaran'));

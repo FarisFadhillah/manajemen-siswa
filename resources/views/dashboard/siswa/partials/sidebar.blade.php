@@ -30,7 +30,7 @@
                 $loggedInSiswaId = Auth::user()->id; // Sesuaikan dengan cara Anda mengakses siswa_id dari user saat login
 
                 // Cek apakah ada siswa dengan siswa_id yang sama dengan yang sedang login dan status 1
-                $siswaWithStatus1 = \App\Models\Data_tambahan_siswa::where('siswa_id', $loggedInSiswaId)
+                $siswaWithStatus1 = \App\Models\DataTambahanSiswa::where('siswa_id', $loggedInSiswaId)
                     ->where('status', 1)
                     ->exists();
 

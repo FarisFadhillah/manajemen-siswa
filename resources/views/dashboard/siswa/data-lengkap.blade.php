@@ -34,13 +34,25 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Agama</label>
-                                <input type="text" name="agama" class="form-control" value="{{ old('agama', $data->agama ?? '') }}" id="basicInput">
+                                <select class="form-control" name="agama">
+                                    <option value="">Pilih</option>
+                                    <option value="Islam" {{ old('agama', $data->agama ?? '') == 'Islam' ? 'selected="selected"' : '' }}>Islam</option>
+                                    <option value="Kristen Protestan" {{ old('agama', $data->agama ?? '') == 'Kristen Protestan' ? 'selected="selected"' : '' }}>Kristen Protestan</option>
+                                    <option value="Kristen Katolik" {{ old('agama', $data->agama ?? '') == 'Kristen Katolik' ? 'selected="selected"' : '' }}>Kristen Katolik</option>
+                                    <option value="Hindu" {{ old('agama', $data->agama ?? '') == 'Hindu' ? 'selected="selected"' : '' }}>Hindu</option>
+                                    <option value="Budha" {{ old('agama', $data->agama ?? '') == 'Budha' ? 'selected="selected"' : '' }}>Budha</option>
+                                    <option value="Konghucu" {{ old('agama', $data->agama ?? '') == 'Konghucu' ? 'selected="selected"' : '' }}>Konghucu</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Kewarganegaraan</label>
-                                <input type="text" name="kewarganegaraan" class="form-control" value="{{ old('kewarganegaraan', $data->kewarganegaraan ?? '') }}" id="basicInput">
+                                <select class="form-control" name="kewarganegaraan">
+                                    <option value="">Pilih</option>
+                                    <option value="WNI" {{ old('kewarganegaraan', $data->kewarganegaraan ?? '') == 'WNI' ? 'selected="selected"' : '' }}>WNI</option>
+                                    <option value="WNA" {{ old('kewarganegaraan', $data->kewarganegaraan ?? '') == 'WNA' ? 'selected="selected"' : '' }}>WNA</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -49,7 +61,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="basicInput">Kartu Indonesia Pintar</label>
+                                <label for="basicInput">No Kartu Indonesia Pintar (No KIP) 6 Digit</label>
                                 <input type="text" name="kip" class="form-control" value="{{ old('kip', $data->kip ?? '') }}" id="basicInput">
                             </div>
                         </div>
