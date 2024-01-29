@@ -56,7 +56,7 @@ Route::middleware(['guest'])->controller(AuthController::class)->group(function 
 
 Route::middleware(['auth'])->get('logout', [AuthController::class, 'logout']);
 
-Route::middleware(['auth:web'])->prefix('admin')->group(function () {
+Route::middleware(['auth:web'])->prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index']);
 
     Route::resource('tahun-ajarans', AdminTahunAjaranController::class);
@@ -65,6 +65,18 @@ Route::middleware(['auth:web'])->prefix('admin')->group(function () {
     Route::resource('pelajarans', AdminPelajaranController::class);
     Route::resource('siswas', AdminSiswaController::class);
     Route::resource('kelases', AdminKelasController::class);
+
+    // Route::prefix('/kelas')->name('kelas.')->group(function () {
+    //     Route::get('/','KelasController@index')->name('index');
+    //     Route::get('/create','KelasController@create')->name('create');
+    //     Route::post('/store','KelasController@store')->name('store');
+    //     Route::get('/{id}','KelasController@show')->name('show');
+    //     Route::get('/{id}/edit','KelasController@edit')->name('edit');
+    //     Route::post('{id}/update','KelasController@update')->name('update');
+    //     Route::delete('/{id}/delete','KelasController@destroy')->name('delete');
+    // });
+
+
     Route::resource('nilais', AdminNilaiController::class);
     Route::resource('jabatans', JabatanController::class);
     Route::resource('tugas', TugasController::class);

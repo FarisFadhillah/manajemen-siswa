@@ -13,7 +13,7 @@ class NilaiController extends Controller
     public function index()
     {
         $mata_pelajarans = Pelajaran::all();
-        $siswas = Siswa::with('nilais', 'absen', 'th')->get();
+        $siswas = Siswa::with('nilais', 'absen')->get();
 
         return view('dashboard.admin.nilais.index', compact('siswas', 'mata_pelajarans'));
     }
