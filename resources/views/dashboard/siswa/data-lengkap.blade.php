@@ -12,19 +12,18 @@
                 <form action="/siswa/data-lengkap/update/{{ $data->id ?? 'new' }}" method="POST"">
                     @csrf
                     @method($data ? 'put' : 'post')
-                    
                     {{-- no_kk&no_akta --}}
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Nomor Kartu Keluarga</label>
-                                <input type="text" name="nokk" class="form-control" value="{{ old('nokk', $data->nokk ?? '') }}" id="basicInput">
+                                <input type="text" name="nokk" class="form-control {{ $errors->has('nokk') ? 'is-invalid' : '' }}" value="{{ old('nokk', $data->nokk ?? '') }}" id="basicInput">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Nomor Akta Kelahiran</label>
-                                <input type="text" name="no_akta" class="form-control" value="{{ old('no_akta', $data->no_akta ?? '') }}" id="basicInput">
+                                <input type="text" name="no_akta" class="form-control {{ $errors->has('no_akta') ? 'is-invalid' : '' }}" value="{{ old('no_akta', $data->no_akta ?? '') }}" id="basicInput">
                             </div>
                         </div>
                     </div>
@@ -34,7 +33,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Agama</label>
-                                <select class="form-control" name="agama">
+                                <select class="form-control {{ $errors->has('agama') ? 'is-invalid' : '' }}" name="agama">
                                     <option value="">Pilih</option>
                                     <option value="Islam" {{ old('agama', $data->agama ?? '') == 'Islam' ? 'selected="selected"' : '' }}>Islam</option>
                                     <option value="Kristen Protestan" {{ old('agama', $data->agama ?? '') == 'Kristen Protestan' ? 'selected="selected"' : '' }}>Kristen Protestan</option>
@@ -48,7 +47,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Kewarganegaraan</label>
-                                <select class="form-control" name="kewarganegaraan">
+                                <select class="form-control {{ $errors->has('kewarganegaraan') ? 'is-invalid' : '' }}" name="kewarganegaraan">
                                     <option value="">Pilih</option>
                                     <option value="WNI" {{ old('kewarganegaraan', $data->kewarganegaraan ?? '') == 'WNI' ? 'selected="selected"' : '' }}>WNI</option>
                                     <option value="WNA" {{ old('kewarganegaraan', $data->kewarganegaraan ?? '') == 'WNA' ? 'selected="selected"' : '' }}>WNA</option>
@@ -62,13 +61,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">No Kartu Indonesia Pintar (No KIP) 6 Digit</label>
-                                <input type="text" name="kip" class="form-control" value="{{ old('kip', $data->kip ?? '') }}" id="basicInput">
+                                <input type="text" name="kip" class="form-control {{ $errors->has('kip') ? 'is-invalid' : '' }}" value="{{ old('kip', $data->kip ?? '') }}" id="basicInput">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Prestasi</label>
-                                <input type="text" name="prestasi" class="form-control" value="{{ old('prestasi', $data->prestasi ?? '') }}" id="basicInput">
+                                <input type="text" name="prestasi" class="form-control {{ $errors->has('prestasi') ? 'is-invalid' : '' }}" value="{{ old('prestasi', $data->prestasi ?? '') }}" id="basicInput">
                             </div>
                         </div>
                     </div>
@@ -78,13 +77,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Anak Ke</label>
-                                <input type="text" name="anak_ke" class="form-control" value="{{ old('anak_ke', $data->anak_ke ?? '') }}" id="basicInput">
+                                <input type="text" name="anak_ke" class="form-control  {{ $errors->has('anak_ke') ? 'is-invalid' : '' }}" value="{{ old('anak_ke', $data->anak_ke ?? '') }}" id="basicInput">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Jumlah Sodara</label>
-                                <input type="text" name="jumlah_sodara" class="form-control" value="{{ old('jumlah_sodara', $data->jumlah_sodara ?? '') }}" id="basicInput">
+                                <input type="text" name="jumlah_sodara" class="form-control  {{ $errors->has('jumlah_sodara') ? 'is-invalid' : '' }}" value="{{ old('jumlah_sodara', $data->jumlah_sodara ?? '') }}" id="basicInput">
                             </div>
                         </div>
                     </div>
@@ -94,13 +93,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Tinggi Badan</label>
-                                <input type="text" name="tb" class="form-control" value="{{ old('tb', $data->tb ?? '') }}" id="basicInput">
+                                <input type="text" name="tb" class="form-control {{ $errors->has('tb') ? 'is-invalid' : '' }}" value="{{ old('tb', $data->tb ?? '') }}" id="basicInput">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Berat Badan</label>
-                                <input type="text" name="bb" class="form-control" value="{{ old('bb', $data->bb ?? '') }}" id="basicInput">
+                                <input type="text" name="bb" class="form-control {{ $errors->has('bb') ? 'is-invalid' : '' }}" value="{{ old('bb', $data->bb ?? '') }}" id="basicInput">
                             </div>
                         </div>
                     </div>
@@ -110,13 +109,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Tinggal Bersama</label>
-                                <input type="text" name="tinggal_bersama" class="form-control" value="{{ old('tinggal_bersama', $data->tinggal_bersama ?? '') }}" id="basicInput">
+                                <input type="text" name="tinggal_bersama" class="form-control {{ $errors->has('tinggal_bersama') ? 'is-invalid' : '' }}" value="{{ old('tinggal_bersama', $data->tinggal_bersama ?? '') }}" id="basicInput">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Moda Transportasi</label>
-                                <input type="text" name="moda_transportasi" class="form-control" value="{{ old('moda_transportasi', $data->moda_transportasi ?? '') }}" id="basicInput">
+                                <input type="text" name="moda_transportasi" class="form-control {{ $errors->has('moda_transportasi') ? 'is-invalid' : '' }}" value="{{ old('moda_transportasi', $data->moda_transportasi ?? '') }}" id="basicInput">
                             </div>
                         </div>
                     </div>
@@ -126,13 +125,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Koordinat Lintang</label>
-                                <input type="text" name="lintang" class="form-control" value="{{ old('lintang', $data->lintang ?? '') }}" id="basicInput">
+                                <input type="text" name="lintang" class="form-control {{ $errors->has('lintang') ? 'is-invalid' : '' }}" value="{{ old('lintang', $data->lintang ?? '') }}" id="basicInput">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Koordinat Bujur</label>
-                                <input type="text" name="bujur" class="form-control" value="{{ old('bujur', $data->bujur ?? '') }}" id="basicInput">
+                                <input type="text" name="bujur" class="form-control {{ $errors->has('bujur') ? 'is-invalid' : '' }}" value="{{ old('bujur', $data->bujur ?? '') }}" id="basicInput">
                             </div>
                         </div>
                     </div>
@@ -142,13 +141,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Jarak Tempuh</label>
-                                <input type="text" name="jarak_rumah" class="form-control" value="{{ old('jarak_rumah', $data->jarak_rumah ?? '') }}" id="basicInput">
+                                <input type="text" name="jarak_rumah" class="form-control {{ $errors->has('jarak_rumah') ? 'is-invalid' : '' }}" value="{{ old('jarak_rumah', $data->jarak_rumah ?? '') }}" id="basicInput">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">Waktu Tempuh</label>
-                                <input type="text" name="waktu_tempuh" class="form-control" value="{{ old('waktu_tempuh', $data->waktu_tempuh ?? '') }}" id="basicInput">
+                                <input type="text" name="waktu_tempuh" class="form-control {{ $errors->has('waktu_tempuh') ? 'is-invalid' : '' }}" value="{{ old('waktu_tempuh', $data->waktu_tempuh ?? '') }}" id="basicInput">
                             </div>
                         </div>
                     </div>

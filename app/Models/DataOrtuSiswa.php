@@ -12,6 +12,27 @@ class DataOrtuSiswa extends Model
     protected $table = 'data_ortu_siswas';
 
     protected $fillable = [
-        'kelas'
+        'siswa_id',
+        'nama_ayah',
+        'nama_ibu',
+        'nama_wali',
+        'nik_ayah',
+        'nik_ibu',
+        'nik_wali',
+        'lahir_ayah',
+        'lahir_ibu',
+        'lahir_wali',
+        'pendidikan_ayah',
+        'pendidikan_ibu',
+        'pendidikan_wali',
+        'pekerjaan_ayah',
+        'pekerjaan_ibu',
+        'pekerjaan_wali',
+        'penghasilan_ayah',
+        'penghasilan_ibu',
+        'penghasilan_wali',
+        'no_telp_ayah',
+        'no_telp_ibu',
+        'no_telp_wali',
     ];
 }

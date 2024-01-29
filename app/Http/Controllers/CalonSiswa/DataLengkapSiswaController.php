@@ -8,6 +8,8 @@ use App\Models\DataOrtuSiswa;
 use App\Models\DataTambahanSiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class DataLengkapSiswaController extends Controller
 {
@@ -49,7 +51,7 @@ class DataLengkapSiswaController extends Controller
 
         if ($id == 'new') {
             // Ini operasi insert (baru)
-            Data_ortu_siswa::create([
+            DataOrtuSiswa::create([
                 'siswa_id' => $siswa->id,
                 'nama_ayah' => $validate['nama_ayah'],
                 'nama_ibu' => $validate['nama_ibu'],
@@ -75,7 +77,7 @@ class DataLengkapSiswaController extends Controller
             ]);
         } else {
             // Ini operasi update
-            Data_ortu_siswa::where('id', $id)->update([
+            DataOrtuSiswa::where('id', $id)->update([
                 'siswa_id' => $siswa->id,
                 'nama_ayah' => $validate['nama_ayah'],
                 'nama_ibu' => $validate['nama_ibu'],
@@ -230,8 +232,9 @@ class DataLengkapSiswaController extends Controller
 
     public function update_lengkap(Request $request, string $id)
     {
+        // dd($request->all());
         $siswa = $request->user();
-        $validate = $request->validate([
+        $rules = [
             'nokk' => 'required',
             'no_akta' => 'required',
             'agama' => 'required',
@@ -246,54 +249,70 @@ class DataLengkapSiswaController extends Controller
             'moda_transportasi' => 'required',
             'lintang' => 'required',
             'bujur' => 'required',
-            'jarak_tempuh' => 'required',
+            'jarak_rumah' => 'required',
             'waktu_tempuh' => 'required',
-        ]);
+        ];
 
-        if ($id == 'new') {
-            // Ini operasi insert (baru)
-            Data_lengkap_siswa::create([
-                'siswa_id' => $siswa->id,
-                'nokk' => $validate['nokk'],
-                'no_akta' => $validate['no_akta'],
-                'agama' => $validate['agama'],
-                'kewarganegaraan' => $validate['kewarganegaraan'],
-                'kip' => $validate['kip'],
-                'prestasi' => $validate['prestasi'],
-                'anak_ke' => $validate['anak_ke'],
-                'jumlah_sodara' => $validate['jumlah_sodara'],
-                'tb' => $validate['tb'],
-                'bb' => $validate['bb'],
-                'tinggal_bersama' => $validate['tinggal_bersama'],
-                'moda_transportasi' => $validate['moda_transportasi'],
-                'lintang' => $validate['lintang'],
-                'bujur' => $validate['bujur'],
-                'jarak_rumah' => $validate['jarak_rumah'],
-                'waktu_tempuh' => $validate['waktu_tempuh']
-            ]);
-        } else {
-            // Ini operasi update
-            Data_lengkap_siswa::where('id', $id)->update([
-                'siswa_id' => $siswa->id,
-                'siswa_id' => $siswa->id,
-                'nokk' => $validate['nokk'],
-                'no_akta' => $validate['no_akta'],
-                'agama' => $validate['agama'],
-                'kewarganegaraan' => $validate['kewarganegaraan'],
-                'kip' => $validate['kip'],
-                'prestasi' => $validate['prestasi'],
-                'anak_ke' => $validate['anak_ke'],
-                'jumlah_sodara' => $validate['jumlah_sodara'],
-                'tb' => $validate['tb'],
-                'bb' => $validate['bb'],
-                'tinggal_bersama' => $validate['tinggal_bersama'],
-                'moda_transportasi' => $validate['moda_transportasi'],
-                'lintang' => $validate['lintang'],
-                'bujur' => $validate['bujur'],
-                'jarak_rumah' => $validate['jarak_rumah'],
-                'waktu_tempuh' => $validate['waktu_tempuh']
-            ]);
+        $pesan = [
+            'nokk.required' => 'NO KK Wajib Diisi!',
+            'no_akta.required' => 'No Akta Wajib Diisi!',
+            'agama.required' => 'Agama Wajib Diisi!',
+            'kewarganegaraan.required' => 'Kewarganegaraan Wajib Diisi!',
+            'kip.required' => 'KIP Wajib Diisi!',
+            'prestasi.required' => 'Alamat Wajib Diisi!',
+            'anak_ke.required' => 'No HP Wajib Diisi!',
+            'jumlah_sodara.required' => 'Password Wajib Diisi!',
+            'tb.required' => 'Tinggi Badan Wajib Diisi!',
+            'bb.required' => 'Berat Badan Wajib Diisi!',
+            'tinggal_bersama.required' => 'Tinggal Bersama Wajib Diisi!',
+            'moda_transportasi.required' => 'Moda Transportasi Wajib Diisi!',
+            'lintang.required' => 'Garis Lintang Wajib Diisi!',
+            'bujur.required' => 'Garis Bujur Wajib Diisi!',
+            'jarak_rumah.required' => 'Jarak Tempuh Wajib Diisi!',
+            'waktu_tempuh.required' => 'Waktu Tempuh Wajib Diisi!',
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $pesan);
+        if ($validator->fails()){
+            dd($validator->errors());
+            return back()->withInput()->withErrors($validator->errors());
+        }else{
+            DB::beginTransaction();
+
+            try{
+
+                if($id == 'new'){
+                    $data = new DataLengkapSiswa();
+                }else{
+                    $data = DataLengkapSiswa::where('id', $id)->first();
+                }
+                $data->siswa_id = $siswa->id;
+                $data->nokk = $request->nokk;
+                $data->no_akta = $request->no_akta;
+                $data->agama = $request->agama;
+                $data->kewarganegaraan = $request->kewarganegaraan;
+                $data->kip = $request->kip;
+                $data->prestasi = $request->prestasi;
+                $data->anak_ke = $request->anak_ke;
+                $data->jumlah_sodara = $request->jumlah_sodara;
+                $data->tb = $request->tb;
+                $data->bb = $request->bb;
+                $data->tinggal_bersama = $request->tinggal_bersama;
+                $data->moda_transportasi = $request->moda_transportasi;
+                $data->lintang = $request->lintang;
+                $data->bujur = $request->bujur;
+                $data->jarak_rumah = $request->jarak_rumah;
+                $data->waktu_tempuh = $request->waktu_tempuh;
+                $data->save();
+
+            }catch(\QueryException $e){
+                DB::rollback();
+                dd($e);
+            }
+            DB::commit();
+            return redirect()->to('/siswa/data-lengkap')->with('success', 'Successfully Add Data');
         }
-        return redirect()->to('/siswa/data-lengkap')->with('success', 'Successfully Add Data');
+
+
     }
 }

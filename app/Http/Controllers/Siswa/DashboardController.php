@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $siswa = $request->user();
 
         $kelas = KelasBridge::where('siswa_id', $siswa->id)->first();
-        // dd($kelas);
+        
         $total_pelajaran = Pelajaran::count();
 
         return view('dashboard.siswa.welcome', compact('kelas', 'total_pelajaran'));
@@ -27,7 +27,7 @@ class DashboardController extends Controller
     {
         $siswa = $request->user();
 
-        $data = Siswa::where('id', $siswa->id)->with('th')->first();
+        $data = Siswa::where('id', $siswa->id)->first();
 
         return view('dashboard.siswa.profile', compact('data'));
     }
