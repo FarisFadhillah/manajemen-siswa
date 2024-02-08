@@ -10,6 +10,10 @@ class AuthController extends Controller
 
     public function index()
     {
+        if(auth()->guard('siswa')->check()){
+            return redirect()->to('/guru/beranda');
+        }
+        
         return view('auth.contents.login');
     }
 
@@ -21,7 +25,7 @@ class AuthController extends Controller
         ]);
 
         if (!Auth::guard('siswa')->attempt($validate)) {
-            return redirect()->to('/')->with('error', 'Invalid Credentials');
+            return redirect()->back()->with('error', 'Invalid Credentials');
         }
 
         return redirect()->to('/siswa');
@@ -29,6 +33,10 @@ class AuthController extends Controller
 
     public function guru()
     {
+        if(auth()->guard('karyawan')->check()){
+            return redirect()->to('/guru/beranda');
+        }
+
         return view('auth.contents.login-guru');
     }
 
@@ -40,15 +48,19 @@ class AuthController extends Controller
         ]);
 
         if (!Auth::guard('karyawan')->attempt($validate)) {
-            return redirect()->to('/login-guru')->with('error', 'Invalid Credentials');
+            return redirect()->back()->with('error', 'Invalid Credentials');
         }
 
-        return redirect()->to('/guru');
+        return redirect()->to('/guru/beranda');
     }
 
 
     public function admin()
     {
+        if(auth()->guard('web')->check()){
+            return redirect()->to('/admin/beranda');
+        }
+
         return view('auth.contents.login-admin');
     }
 
@@ -60,10 +72,10 @@ class AuthController extends Controller
         ]);
 
         if (!Auth::guard('web')->attempt($validate)) {
-            return redirect()->to('/login-admin')->with('error', 'Invalid Credentials');
+            return redirect()->back()->with('error', 'Invalid Credentials');
         }
 
-        return redirect()->to('/admin');
+        return redirect()->to('/admin/beranda');
     }
 
     public function logout()

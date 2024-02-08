@@ -46,18 +46,13 @@
                         <tr>
                             <th>Tanggal Mulai</th>
                             <td>:</td>
-                            <td>{{ Carbon::parse($guruDetails->tanggal_mulai)->format('d F Y') ?? 'Tidak Ada Data' }}</td>
+                            <td>{{ $guruDetails ? Carbon::parse($guruDetails->tanggal_mulai)->format('d F Y') : 'Tidak Ada Data' }}</td>
                         </tr>
                         <tr>
                             <th>Tempat Tanggal Lahir</th>
                             <td>:</td>
-                            <td>{{ $guruDetails->tempat_lahir ?? 'Tidak Ada Data' }}, {{ Carbon::parse($guruDetails->tanggal_lahir)->format('d F Y') ?? 'Tidak Ada Data' }}</td>
+                            <td>{{ $guruDetails->tempat_lahir ?? 'Tidak Ada Data' }}, {{ $guruDetails ? Carbon::parse($guruDetails->tanggal_lahir)->format('d F Y') : 'Tidak Ada Data' }}</td>
                         </tr>
-                        {{-- <tr>
-                            <th>Tanggal Lahir</th>
-                            <td>:</td>
-                            <td>{{ $guruDetails->tanggal_lahir ?? 'Tidak Ada Data' }}</td>
-                        </tr> --}}
                         <tr>
                             <th>Status</th>
                             <td>:</td>

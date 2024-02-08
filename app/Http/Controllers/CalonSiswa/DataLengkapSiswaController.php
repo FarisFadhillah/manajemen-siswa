@@ -255,6 +255,7 @@ class DataLengkapSiswaController extends Controller
 
         $pesan = [
             'nokk.required' => 'NO KK Wajib Diisi!',
+            'nokk.unique' => 'NO KK Sudah Terdaftar!',
             'no_akta.required' => 'No Akta Wajib Diisi!',
             'agama.required' => 'Agama Wajib Diisi!',
             'kewarganegaraan.required' => 'Kewarganegaraan Wajib Diisi!',
@@ -274,7 +275,7 @@ class DataLengkapSiswaController extends Controller
         
         $validator = Validator::make($request->all(), $rules, $pesan);
         if ($validator->fails()){
-            dd($validator->errors());
+            // dd($validator->errors());
             return back()->withInput()->withErrors($validator->errors());
         }else{
             DB::beginTransaction();

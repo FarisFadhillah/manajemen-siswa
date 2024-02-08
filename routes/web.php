@@ -36,28 +36,47 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::middleware(['guest'])->group(function () {
+    Route::get('/','LandingController@index')->name('home');
 
-Route::middleware(['guest'])->controller(AuthController::class)->group(function () {
-    // SISWA
-    Route::get('/', 'index');
-    Route::post('/login-siswa', 'loginSiswa');
+    
+    Route::get('/login','AuthController@index')->name('login');
+    Route::post('/login-siswa','AuthController@loginSiswa')->name('loginSiswa');
 
-    Route::get('pendaftaran', [DataSiswaController::class, 'create']);
-    Route::post('pendaftaran', [DataSiswaController::class, 'store'])->name('casis.store');
+    
+    Route::get('/pendaftaran','CalonSiswa\DataSiswaController@create')->name('daftar');
+    Route::post('/pendaftaran','CalonSiswa\DataSiswaController@store')->name('casis.store');
+    
+    Route::get('/guru','AuthController@guru')->name('guru');
+    Route::post('/login-guru','AuthController@loginGuru')->name('loginGuru');
 
-    // GURU
-    Route::get('/login-guru', 'guru');
-    Route::post('/login-guru', 'loginGuru');
-
-    // ADMIN
-    Route::get('/login-admin', 'admin');
-    Route::post('/login-admin', 'loginAdmin');
+    
+    Route::get('/admin','AuthController@admin')->name('admin');
+    Route::post('/login-admin','AuthController@loginAdmin')->name('loginAdmin');
 });
+
+
+// Route::middleware(['guest'])->controller(AuthController::class)->group(function () {
+//     // SISWA
+//     Route::get('/', 'index');
+//     Route::post('/login-siswa', 'loginSiswa');
+
+//     Route::get('pendaftaran', [DataSiswaController::class, 'create']);
+//     Route::post('pendaftaran', [DataSiswaController::class, 'store'])->name('casis.store');
+
+//     // GURU
+//     Route::get('/login-guru', 'guru');
+//     Route::post('/login-guru', 'loginGuru');
+
+//     // ADMIN
+//     Route::get('/login-admin', 'admin');
+//     Route::post('/login-admin', 'loginAdmin');
+// });
 
 Route::middleware(['auth'])->get('logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth:web'])->prefix('admin')->namespace('Admin')->group(function () {
-    Route::get('/', [AdminDashboardController::class, 'index']);
+    Route::get('/beranda', [AdminDashboardController::class, 'index']);
 
     Route::resource('tahun-ajarans', AdminTahunAjaranController::class);
     Route::resource('gurus', AdminGuruController::class);
@@ -87,7 +106,7 @@ Route::middleware(['auth:web'])->prefix('admin')->namespace('Admin')->group(func
 });
 
 Route::middleware(['auth:karyawan'])->prefix('guru')->group(function () {
-    Route::get('/', [GuruDashboardController::class, 'index']);
+    Route::get('/beranda', [GuruDashboardController::class, 'index']);
     Route::get('/akun', [GuruDashboardController::class, 'akun']);
     Route::put('/akun/{id}', [GuruDashboardController::class, 'updatePass']);
     Route::get('/profile', [GuruDashboardController::class, 'show']);

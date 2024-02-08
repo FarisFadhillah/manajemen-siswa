@@ -39,8 +39,7 @@ class GuruController extends Controller
             'email' => 'required'
         ]);
 
-        // dd($validate);
-        $validate['password'] = Hash::make('password'); // Password
+        $validate['password'] = Hash::make('password');
         Karyawan::create($validate);
 
         return redirect()->to('/admin/gurus')->with('success', 'Successfully Created Guru');
